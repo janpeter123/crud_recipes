@@ -1,6 +1,35 @@
-.categories-section{
-    background-color: red;
+.categories-section {
+  overflow: scroll;
+  display: flex;
+  width: 80%;
+  align-self: center;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.MuiContainer-root {
+  background-color: red !important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+  border-radius: 0.5rem;
+  min-width: 10rem !important;
+  color:white;
+}
+
+.teste{
     display: flex;
-    width: 100%;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-button{
+    height: 100% !important;
+    border-radius: 0 !important;
+}
+
+a{
+    color:black;
+    opacity: 0.1;
 }
