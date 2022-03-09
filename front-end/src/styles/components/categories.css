@@ -2,7 +2,6 @@
   overflow: scroll;
   display: flex;
   width: 80%;
-  align-self: center;
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;

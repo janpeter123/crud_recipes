@@ -1,0 +1,34 @@
+.card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+}
+
+.card-right {
+  margin-left: 2rem;
+}
+
+.card-left h3,
+.card-left p {
+  margin: 0;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+.card-right h3,
+.card-right p {
+  margin: 0;
+  word-break: break-all;
+  width: 100%;
+}
+
+.recipe-card-section {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 12rem 12rem;
+  align-content: center;
+  justify-content: space-around;
+  justify-items: center;
+}

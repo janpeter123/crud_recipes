@@ -16,3 +16,11 @@
 .MuiDrawer-paper {
   width: 50% !important;
   }
+
+.AppContent{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-self: center;
+  margin-top: 4rem;
+}
