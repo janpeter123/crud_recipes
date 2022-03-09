@@ -1,0 +1,46 @@
+{
+    "author": "Jan Peter Merkel",
+    "recipe_name": "Arroz Branco Normal",
+    "date":"07/03/2022",
+    "country": "Brazil",
+    "prepare_time": "30",
+    "prepare_time_unit": "Minutos",
+    "video_link":"https://youtu.be/gRTWL39lUtQ",
+    "main_photo":"",
+    "photo_album":[],
+    "ingredients_list": [
+        {
+            "name": "alho",
+            "measurement_unit": "dentes",
+            "quantity": "2"
+        },
+        {
+            "name": "cebola",
+            "measurement_unit": "unidades",
+            "quantity": "2"
+        },
+        {
+            "name": "sal",
+            "measurement_unit": "colher de chá",
+            "quantity": "1"
+        },
+        {
+            "name": "arroz",
+            "measurement_unit": "xícaras",
+            "quantity": "2"
+        },
+        {
+            "name": "agua",
+            "measurement_unit": "xícaras",
+            "quantity": "3"
+        }
+    ],
+    "description": [
+        "Lave bem o arroz e coloque a água para ferver em uma panela separada.",
+        "Em outra panela, aqueça o óleo e refogue a cebola e o alho até que estejam transparentes",
+        "Junte o arroz e refogue bem até ficar brilhante.",
+        "Adicione a água fervente e misture bem.",
+        "Abaixe o fogo, tampe parcialmente a panela e deixe cozinhar até o arroz secar",
+        "Desligue o fogo, tampe a panela por mais 5 minutos para que o arroz termine o cozimento em seu próprio vapor."
+    ]
+}
