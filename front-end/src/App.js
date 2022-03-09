@@ -1,5 +1,7 @@
 import "./styles/App.css";
 import Navbar from "./components/navbar";
+import Hero from "./components/hero";
+import Categories from "./components/categories";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       </style>
 
       <Navbar />
+      <Hero />
+      <Categories />
     </div>
   );
 }
