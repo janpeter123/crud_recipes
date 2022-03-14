@@ -26,15 +26,17 @@ try {
       const Recipes = mongoose.model("recipe", recipe_schema);
 
       app.get("/get_recipes", async function (req, res) {
-        // res.setHeader("Content-Type", "application/json");
+        res.setHeader("Content-Type", "application/json");
         Recipes.find(
           {},
-          { _id: ObjectId, recipe_name: 1, review: 1 },
+          { _id: ObjectId, recipe_name: 1, reviews: 1, author:1, prepare_time:1, prepare_time_unit:1 },
           function (err, docs) {
             res.send(docs);
           }
         );
       });
+
+      
       console.log("Listening on port 5001");
       app.listen(5001);
     }
