@@ -1,0 +1,26 @@
+{
+  "name": "crud_recipes",
+  "version": "1.0.0",
+  "description": "This is an entire recipe website planned by myself. I am planning to use everything that I've learned working on this repo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janpeter123/crud_recipes.git"
+  },
+  "keywords": [
+    "express",
+    "back-end"
+  ],
+  "author": "Jan Peter Merkel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janpeter123/crud_recipes/issues"
+  },
+  "homepage": "https://github.com/janpeter123/crud_recipes#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
