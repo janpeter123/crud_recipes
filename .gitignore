@@ -1,2 +1,5 @@
 back-end/node_modules/
 back-end/.env
+front-end/src/credentials/credentials.js
+front-end/src/credentials/credentials.js
+front-end/src/credentials/credentials_do_not_share.js
