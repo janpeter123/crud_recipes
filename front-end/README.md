@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# 🔔 Disclaimer: So far, this app only works on mobile devices.
+# 🔔 Disclaimer: So far, this app works only on mobile devices.
 
 ## Available Scripts
 
