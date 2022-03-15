@@ -31,7 +31,7 @@ try {
           {},
           { _id: ObjectId, recipe_name: 1, reviews: 1, author:1, prepare_time:1, prepare_time_unit:1 },
           function (err, docs) {
-            res.send(docs);
+            res.status(200).send({"body":docs});
           }
         );
       });
