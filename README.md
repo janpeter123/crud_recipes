@@ -5,6 +5,29 @@ I am planning to use everything that I've learned working on this repo.
 ## MongoDB schemas
 <img src="./readme_images/Recipe_schema.png" width=200/>
 
+## Schemas description
+
+#### • Recipes
+  
+Field | Description
+----|----
+_id| Primary Key
+author|User
+recipe_name | Name of the recipe
+date | Publication date
+country | Recipe country of origin
+prepare_time | Prepare time of the recipe
+prepare_time_unit | Time unit of the prepare time. Can be Hours, Minutes, Days
+video_link | Youtube or another video Link of the recipe
+main_photo | The photo that will be displayed on the main page of the app
+photo_album | Recipe Image gallery, More images of the recipe
+Ingredients_list | Ingredients used on this recipe
+description | Recipe Steps of how to do it
+reviews | User reviews
+review_count | How many people had reviewed a recipe
+
+
+
 note: this is the basic database schema, the final one can suffer alterations and it's alterations will be documented here.
 
 ## Business Rules
