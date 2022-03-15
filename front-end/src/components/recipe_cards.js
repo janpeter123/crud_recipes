@@ -14,14 +14,13 @@ function MediaCard() {
   useEffect(() => {
     async function get_recipes() {
       try {
-        const res = await fetch(credentials.BACK_END_URL + "/get_recipes", {
+        const res = await fetch("/get_recipes", {
           method: "GET",
           mode: "no-cors",
-        }).then((data) => {
-          setRecipes(data)
-          console.log(data)
-          return data;
         });
+
+        const parsedData = await res.json();
+        setRecipes(parsedData.body);
       } catch (e) {
         console.log(e);
       }
@@ -31,83 +30,37 @@ function MediaCard() {
   }, []);
   return (
     <section className="recipe-card-section">
-      <Card sx={{ maxWidth: "10rem", marginTop: "2rem", maxHeight: "11rem" }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="90"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
-          <CardContent
-            sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
+      {recipes.map((recipe,i) => {
+        return (
+          <Card
+            sx={{ maxWidth: "10rem", marginTop: "2rem", maxHeight: "11rem",paddingBottom:"1rem" }}
+            key={i}
           >
-            <div className="card-left">
-              <h3>Bife a role</h3>
-              <div>
-                <Rating name="simple-controlled" value={4.3} size="small" />
-              </div>
-            </div>
-            <div className="card-right">
-              <AccessTimeIcon />
-              <p>45</p>
-              <p>min</p>
-            </div>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card sx={{ maxWidth: "10rem", marginTop: "2rem", maxHeight: "11rem" }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="90"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
-          <CardContent
-            sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
-          >
-            <div className="card-left">
-              <h3>Bife a role</h3>
-              <div>
-                <Rating name="simple-controlled" value={4.3} size="small" />
-              </div>
-            </div>
-            <div className="card-right">
-              <AccessTimeIcon />
-              <p>45</p>
-              <p>min</p>
-            </div>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card sx={{ maxWidth: "10rem", marginTop: "2rem", maxHeight: "11rem" }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="90"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
-          <CardContent
-            sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
-          >
-            <div className="card-left">
-              <h3>Bife a role</h3>
-              <div>
-                <Rating name="simple-controlled" value={4.3} size="small" />
-              </div>
-            </div>
-            <div className="card-right">
-              <AccessTimeIcon />
-              <p>45</p>
-              <p>min</p>
-            </div>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="90"
+                image={`${recipe.main_photo}${credentials.FIREBASE_TOKEN}`}
+              />
+              <CardContent
+                sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
+              >
+                <div className="card-left">
+                  <h3>{recipe.recipe_name}</h3>
+                  <div>
+                    <Rating name="simple-controlled" value={4.3} size="small" />
+                  </div>
+                </div>
+                <div className="card-right">
+                  <AccessTimeIcon />
+                  <p>{recipe.prepare_time}</p>
+                  <p>{recipe.prepare_time_unit.slice(0,3)}</p>
+                </div>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        );
+      })}
     </section>
   );
 }

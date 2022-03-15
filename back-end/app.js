@@ -29,7 +29,7 @@ try {
         res.setHeader("Content-Type", "application/json");
         Recipes.find(
           {},
-          { _id: ObjectId, recipe_name: 1, reviews: 1, author:1, prepare_time:1, prepare_time_unit:1 },
+          { _id: ObjectId, recipe_name: 1, reviews: 1, author:1, prepare_time:1, prepare_time_unit:1, main_photo:1 },
           function (err, docs) {
             res.status(200).send({"body":docs});
           }
