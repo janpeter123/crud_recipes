@@ -2,8 +2,8 @@
 This is an entire recipe website planned by myself.
 I am planning to use everything that I've learned working on this repo.
 
-## Database schema
-![database schema](./readme_images/database-schema.png)
+## MongoDB schemas
+<img src="./readme_images/Recipe_schema.png" width=200/>
 
 note: this is the basic database schema, the final one can suffer alterations and it's alterations will be documented here.
 
