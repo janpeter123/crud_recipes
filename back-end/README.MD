@@ -16,7 +16,7 @@ Expected response:
 
 If everything works correctly you will need to acces the `response.body` to display the data on the home page.
 
-To display the image correctly you need to have a firebase token
+To display the image correctly you need to have a firebase token to add it to the end of the image link
 ```
 {
     "body": [
