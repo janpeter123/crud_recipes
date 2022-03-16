@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { CardActionArea } from "@mui/material";
 import Rating from "@mui/material/Rating";
-const credentials = require("../credentials/credentials_do_not_share");
+// const credentials = require("../credentials/credentials_do_not_share");
 
 function MediaCard() {
   const [recipes, setRecipes] = useState([]);
@@ -40,7 +40,7 @@ function MediaCard() {
               <CardMedia
                 component="img"
                 height="90"
-                image={`${recipe.main_photo}${credentials.FIREBASE_TOKEN}`}
+                image={`${recipe.main_photo}`}
               />
               <CardContent
                 sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
