@@ -8,10 +8,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { searchBarStyle } from "../styles/components/heroStyle";
+import {
+  FormControl,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+} from "@mui/material/";
+import SearchIcon from "@mui/icons-material/Search";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const mobile = useMediaQuery("(max-width:820px)");
-  //TODO 
+  const mobile = useMediaQuery("(max-width:600px)");
+  //TODO
   //Desktop layout
 
   const [state, setState] = React.useState(false);
@@ -20,39 +29,98 @@ function Navbar() {
     setState(open);
   };
 
-  return (
-    <div className="App">
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;80display=swap');
-      </style>
+  if (mobile) {
+    return (
+      <div className="App">
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;80display=swap');
+        </style>
 
-      <nav>
-        <Button onClick={toggleDrawer(true)}>
-          <MenuIcon sx={{ color: "#3fd609", marginRight: "3rem" }} />
-        </Button>
-        <Drawer
-          anchor="left"
-          open={state}
-          onClose={toggleDrawer(false)}
-          sx={{ minWidth: "100rem" }}
-        >
-          <List sx={{ width: "100%" }}>
-            <ListItem>teste</ListItem>
-          </List>
-        </Drawer>
-        <div>
-          <img
-            src={require("../styles/icons/cooking_icon.png")}
-            width={"30rem"}
-            className="crud_logo"
-            alt="logo"
-          />
-        </div>
-        <h1 className="title">C.R.U.D Recipes</h1>
-      </nav>
-    </div>
-  );
+        <nav className="nav_mobile">
+          <Button onClick={toggleDrawer(true)}>
+            <MenuIcon sx={{ color: "#3fd609", marginRight: "3rem" }} />
+          </Button>
+          <Drawer
+            anchor="left"
+            open={state}
+            onClose={toggleDrawer(false)}
+            sx={{ minWidth: "100rem" }}
+          >
+            <List sx={{ width: "100%" }}>
+              <ListItem>teste</ListItem>
+            </List>
+          </Drawer>
+          <div>
+            <img
+              src={require("../styles/icons/cooking_icon.png")}
+              width={"30rem"}
+              className="crud_logo"
+              alt="logo"
+            />
+          </div>
+          <h1 className="title_mobile">C.R.U.D Recipes</h1>
+        </nav>
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;80display=swap');
+        </style>
+
+        <nav className="nav_desktop">
+          <NavLink to="/" className="crud_div">
+            <img
+              src={require("../styles/icons/cooking_icon.png")}
+              width={"44rem"}
+              className="crud_logo_desktop"
+              alt="logo"
+            />
+            <h1 className="title_desktop">C.R.U.D Recipes</h1>
+          </NavLink>
+          <FormControl variant="outlined" sx={{ width: "30%" }}>
+            <OutlinedInput
+              id="searchbar"
+              variant="outlined"
+              size="small"
+              placeholder="Recipes, Ingredients...."
+              fullWidth
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton aria-label="search" edge="end">
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              }
+              sx={searchBarStyle}
+            />
+          </FormControl>
+          <NavLink to="/" className="NavLink">
+            Add Recipe
+          </NavLink>
+          <NavLink to="/" className="NavLink">
+            Manage
+          </NavLink>
+          <NavLink to="/" className="LoginButton">
+            <Button
+              sx={{
+                color: "#000",
+                background:
+                  "linear-gradient(294.3deg, rgba(77, 254, 15, 0.83) 0%, rgba(254, 246, 58, 0.7968) 83.16%)",
+                borderRadius: "20px",
+                fontWeight:"800"
+              }}
+            >
+              Login
+            </Button>
+          </NavLink>
+        </nav>
+      </div>
+    );
+  }
 }
 
 export default Navbar;

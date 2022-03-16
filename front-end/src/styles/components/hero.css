@@ -1,4 +1,9 @@
-.hero-section{
+.hero-section-mobile{
     padding-left: 1rem;
     width: 100%;
+}
+
+.hero-section-desktop{
+    padding-left: 2rem;
+    width: 40%;
 }

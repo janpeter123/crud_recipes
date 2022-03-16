@@ -6,8 +6,16 @@
   flex-direction: column;
 }
 
-.title {
+.title_mobile {
   margin: 0;
+  background: -webkit-linear-gradient(#ebef1f, #4dfe0f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title_desktop {
+  margin: 0;
+  padding-left: 0.5rem;
   background: -webkit-linear-gradient(#ebef1f, #4dfe0f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
