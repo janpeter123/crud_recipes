@@ -1,6 +1,25 @@
 # C.R.U.D Recipes
-This is an entire recipe website planned by myself.
-I am planning to use everything that I've learned working on this repo.
+This is an entire recipe web application planned and designed by myself.
+
+# Application Details
+  This application consists of two independent parts the [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end) and the [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end).
+  
+  - See more about the Front-End [here](https://github.com/janpeter123/crud_recipes/tree/main/front-end)
+  - See more about the Back-end [here](https://github.com/janpeter123/crud_recipes/tree/main/back-end)
+ 
+ ## Technologies used:
+ Front-End
+ -----
+  - [React.js](https://reactjs.org/)
+  - [React Router](https://reactrouter.com/)
+  - [Mongoose](https://mongoosejs.com/)
+  - [MUI](https://mui.com/)
+
+Back-End
+----
+  - [MongoDB hosted on AWS](https://www.mongodb.com/)
+  - [Express.js](https://expressjs.com/)
+  - [Firebase Storage](https://firebase.google.com/docs/storage/web/start)
 
 ## MongoDB schemas
 <img src="./readme_images/Recipe_schema.png" width=200/>
