@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./App";
-import Play from "./pages/play";
+import Recipe from "./pages/recipe";
+import AddRecipe from "./pages/add_recipe";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,7 +11,8 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/play" element={<Play />} />
+      <Route path="/recipe/:id" element={<Recipe />} />
+      <Route path="/add_recipe/" element={<AddRecipe />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

@@ -25,18 +25,32 @@ try {
       //getting recipes
       const Recipes = mongoose.model("recipe", recipe_schema);
 
-      app.get("/get_recipes", async function (req, res) {
+      app.get("/get_catalog", async function (req, res) {
         res.setHeader("Content-Type", "application/json");
         Recipes.find(
           {},
-          { _id: ObjectId, recipe_name: 1, reviews: 1, author:1, prepare_time:1, prepare_time_unit:1, main_photo:1 },
+          {
+            _id: ObjectId,
+            recipe_name: 1,
+            reviews: 1,
+            author: 1,
+            prepare_time: 1,
+            prepare_time_unit: 1,
+            main_photo: 1,
+          },
           function (err, docs) {
-            res.status(200).send({"body":docs});
+            res.status(200).send({ body: docs });
           }
         );
       });
 
-      
+      app.get("/get_recipe", async function (req, res) {
+        res.setHeader("Content-Type", "application/json");
+        Recipes.findById(req.query.id, function (err, docs) {
+          res.status(200).send({ body: docs });
+        });
+      });
+
       console.log("Listening on port 5001");
       app.listen(5001);
     }

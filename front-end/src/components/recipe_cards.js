@@ -6,58 +6,71 @@ import CardMedia from "@mui/material/CardMedia";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { CardActionArea } from "@mui/material";
 import Rating from "@mui/material/Rating";
+import { Link } from "react-router-dom";
 // const credentials = require("../credentials/credentials_do_not_share");
 
 function MediaCard() {
-  const [recipes, setRecipes] = useState([]);
+  const [catalog, setCatalog] = useState([]);
+  const cardContentStyle = {
+    display: "flex",
+    flexDirection: "row",
+    marginY: "0",
+  };
+  const cardStyle = {
+    maxWidth: "10rem",
+    marginTop: "2rem",
+    maxHeight: "11rem",
+    paddingBottom: "1rem",
+  };
 
   useEffect(() => {
-    async function get_recipes() {
+    async function get_catalog() {
       try {
-        const res = await fetch("/get_recipes", {
+        const res = await fetch("/get_catalog", {
           method: "GET",
           mode: "no-cors",
         });
 
         const parsedData = await res.json();
-        setRecipes(parsedData.body);
+        setCatalog(parsedData.body);
       } catch (e) {
         console.log(e);
       }
     }
 
-    get_recipes();
+    get_catalog();
   }, []);
   return (
     <section className="recipe-card-section">
-      {recipes.map((recipe,i) => {
+      {catalog.map((recipe, i) => {
         return (
-          <Card
-            sx={{ maxWidth: "10rem", marginTop: "2rem", maxHeight: "11rem",paddingBottom:"1rem" }}
-            key={i}
-          >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="90"
-                image={`${recipe.main_photo}`}
-              />
-              <CardContent
-                sx={{ display: "flex", flexDirection: "row", marginY: "0" }}
-              >
-                <div className="card-left">
-                  <h3>{recipe.recipe_name}</h3>
-                  <div>
-                    <Rating name="simple-controlled" value={4.3} size="small" />
+          <Card sx={cardStyle} key={i}>
+            <Link to={`/recipe/${catalog[i]._id}`} style={{textDecoration:"none"}}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="90"
+                  image={`${recipe.main_photo}`}
+                />
+                <CardContent sx={cardContentStyle}>
+                  <div className="card-left">
+                    <h3>{recipe.recipe_name}</h3>
+                    <div>
+                      <Rating
+                        name="simple-controlled"
+                        value={4.5}
+                        size="small"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="card-right">
-                  <AccessTimeIcon />
-                  <p>{recipe.prepare_time}</p>
-                  <p>{recipe.prepare_time_unit.slice(0,3)}</p>
-                </div>
-              </CardContent>
-            </CardActionArea>
+                  <div className="card-right">
+                    <AccessTimeIcon />
+                    <p>{recipe.prepare_time}</p>
+                    <p>{recipe.prepare_time_unit.slice(0, 3)}</p>
+                  </div>
+                </CardContent>
+              </CardActionArea>
+            </Link>
           </Card>
         );
       })}

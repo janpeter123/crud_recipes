@@ -19,9 +19,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const mobile = useMediaQuery("(max-width:600px)");
-  //TODO
-  //Desktop layout
+  const mobile = useMediaQuery("(max-width:900px)");
 
   const [state, setState] = React.useState(false);
 
@@ -32,14 +30,9 @@ function Navbar() {
   if (mobile) {
     return (
       <div className="App">
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;80display=swap');
-        </style>
-
         <nav className="nav_mobile">
           <Button onClick={toggleDrawer(true)}>
-            <MenuIcon sx={{ color: "#3fd609", marginRight: "3rem" }} />
+            <MenuIcon sx={{ color: "#3fd609" }} />
           </Button>
           <Drawer
             anchor="left"
@@ -48,18 +41,28 @@ function Navbar() {
             sx={{ minWidth: "100rem" }}
           >
             <List sx={{ width: "100%" }}>
-              <ListItem>teste</ListItem>
+              <NavLink to="/" className={"NavLink"}>
+                <ListItem>Home</ListItem>
+              </NavLink>
+              <NavLink to="/add_recipe" className={"NavLink"}>
+                <ListItem>Add Recipe</ListItem>
+              </NavLink>
+              <NavLink to="/" className={"NavLink"}>
+                <ListItem>Manage</ListItem>
+              </NavLink>
             </List>
           </Drawer>
-          <div>
-            <img
-              src={require("../styles/icons/cooking_icon.png")}
-              width={"30rem"}
-              className="crud_logo"
-              alt="logo"
-            />
-          </div>
-          <h1 className="title_mobile">C.R.U.D Recipes</h1>
+          <NavLink to="/" className="NavLink" style={{ display: "flex",paddingTop:"0.5rem" }}>
+            <div>
+              <img
+                src={require("../styles/icons/cooking_icon.png")}
+                width={"30rem"}
+                className="crud_logo"
+                alt="logo"
+              />
+            </div>
+            <h1 className="title_mobile">C.R.U.D Recipes</h1>
+          </NavLink>
         </nav>
       </div>
     );
@@ -111,7 +114,7 @@ function Navbar() {
                 background:
                   "linear-gradient(294.3deg, rgba(77, 254, 15, 0.83) 0%, rgba(254, 246, 58, 0.7968) 83.16%)",
                 borderRadius: "20px",
-                fontWeight:"800"
+                fontWeight: "800",
               }}
             >
               Login

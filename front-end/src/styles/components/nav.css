@@ -37,17 +37,17 @@
   transition: 1s;
 }
 
-.crud_logo_desktop{
+.crud_logo_desktop {
   margin-bottom: 1rem;
   margin-left: 2rem;
   transition: 1s;
 }
 
-.crud_logo_desktop:hover,.crud_logo:hover {
+.crud_logo_desktop:hover,
+.crud_logo:hover {
   transform: rotate(60deg);
   transition: 1s;
 }
-
 
 .crud_div {
   display: flex;
@@ -79,3 +79,5 @@
   transform: scale(1.1);
   transition: 100ms;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600");

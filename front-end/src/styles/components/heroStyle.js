@@ -1,6 +1,6 @@
 const heroStyle_mobile = {
   backgroundImage:
-    "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url(/assets/hero.png)",
+    "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url(/assets/hero.jpg)",
   height: "12rem",
   backgroundSize: "cover",
   marginTop: "2%",
@@ -15,7 +15,7 @@ const heroStyle_mobile = {
 
 const heroStyle_desktop = {
   backgroundImage:
-    "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url(/assets/hero.png)",
+    "linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url(/assets/hero.jpg)",
   height: "26rem",
   backgroundSize: "cover",
   backgroundPosition:"center",
