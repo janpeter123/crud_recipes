@@ -50,9 +50,27 @@ function Navbar() {
               <NavLink to="/" className={"NavLink"}>
                 <ListItem className="drawer-item">Manage</ListItem>
               </NavLink>
+              <NavLink to="/" className="LoginButton">
+                <Button
+                  sx={{
+                    color: "#000",
+                    background:
+                      "linear-gradient(294.3deg, rgba(77, 254, 15, 0.83) 0%, rgba(254, 246, 58, 0.7968) 83.16%)",
+                    width:"80%",
+                    fontWeight: "600",
+                    marginLeft:"1rem"
+                  }}
+                >
+                  Login
+                </Button>
+              </NavLink>
             </List>
           </Drawer>
-          <NavLink to="/" className="NavLink" style={{ display: "flex",paddingTop:"0.5rem" }}>
+          <NavLink
+            to="/"
+            className="NavLink"
+            style={{ display: "flex", paddingTop: "0.5rem" }}
+          >
             <div>
               <img
                 src={require("../styles/icons/cooking_icon.png")}
