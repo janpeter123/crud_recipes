@@ -4,6 +4,7 @@ var express = require("express");
 //# Mongoose
 const mongoose = require("mongoose");
 const recipe_schema = require("./models/recipes");
+const category_schema = require("./models/categories");
 
 // #DB Credentials .env file
 const dotenv = require("dotenv").config();
@@ -22,33 +23,57 @@ try {
     } else {
       var app = express();
 
-      //getting recipes
-      const Recipes = mongoose.model("recipe", recipe_schema);
-
       app.get("/get_catalog", async function (req, res) {
-        res.setHeader("Content-Type", "application/json");
-        Recipes.find(
-          {},
-          {
-            _id: ObjectId,
-            recipe_name: 1,
-            reviews: 1,
-            author: 1,
-            prepare_time: 1,
-            prepare_time_unit: 1,
-            main_photo: 1,
-          },
-          function (err, docs) {
-            res.status(200).send({ body: docs });
-          }
-        );
+        //getting recipes
+        try {
+          const Recipes = mongoose.model("recipe", recipe_schema);
+          res.setHeader("Content-Type", "application/json");
+          Recipes.find(
+            {},
+            {
+              _id: ObjectId,
+              recipe_name: 1,
+              reviews: 1,
+              author: 1,
+              prepare_time: 1,
+              prepare_time_unit: 1,
+              main_photo: 1,
+            },
+            function (err, docs) {
+              res.status(200).send({ body: docs });
+            }
+          );
+        } catch (e) {
+          console.log(e);
+        }
       });
 
       app.get("/get_recipe", async function (req, res) {
-        res.setHeader("Content-Type", "application/json");
-        Recipes.findById(req.query.id, function (err, docs) {
-          res.status(200).send({ body: docs });
-        });
+        try {
+          const Recipes = mongoose.model("recipe", recipe_schema);
+          res.setHeader("Content-Type", "application/json");
+          Recipes.findById(req.query.id, function (err, docs) {
+            res.status(200).send({ body: docs });
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      });
+
+      app.get("/get_categories", async (req, res) => {
+        try {
+          const Categories = mongoose.model("categories", category_schema);
+          res.setHeader("Content-Type", "application/json");
+          Categories.find(
+            {},
+            { _id: ObjectId, main_photo: 1, name: 1 },
+            function (err, docs) {
+              res.status(200).send({ body: docs });
+            }
+          );
+        } catch (e) {
+          console.log(e);
+        }
       });
 
       console.log("Listening on port 5001");

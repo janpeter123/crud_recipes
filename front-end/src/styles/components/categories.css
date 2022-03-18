@@ -8,8 +8,7 @@
   padding-bottom: 1rem;
 }
 
-.MuiContainer-root {
-  background-color: red !important;
+.categories-card {
   margin-left: 0.5rem !important;
   margin-right: 0.5rem !important;
   border-radius: 0.5rem;

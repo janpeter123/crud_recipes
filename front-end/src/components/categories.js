@@ -4,11 +4,25 @@ import Container from "@mui/material/Container";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { IconButton } from "@mui/material/";
+import { useEffect, useState } from "react";
 
 function Categories() {
   //deve ter 6 categorias.
-  const list = [1, 2, 3, 4, 5, 6];
-  const [index, setIndex] = React.useState(1);
+  const [category, setCategory] = React.useState([]);
+  const [index, setIndex] = useState(1);
+
+  useEffect(() => {
+    const get_categories = async () => {
+      const res = await fetch("/get_categories", {
+        method: "GET",
+        mode: "no-cors",
+      });
+
+      const parsedResponse = await res.json();
+      setCategory(parsedResponse.body);
+    };
+    get_categories();
+  }, [category]);
 
   return (
     <section className="teste">
@@ -25,19 +39,20 @@ function Categories() {
         </a>
       </IconButton>
       <section className="categories-section">
-        {list.map((element) => {
+        {category.map((element, i) => {
           return (
             <Container
-              className="catecories-card"
-              id={element}
-              key={element}
+              className="categories-card"
+              key={i}
+              id={i}
               sx={{
                 background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-            url(/assets/pizza.png)`,
+            url(${element.main_photo})`,
                 backgroundSize: "cover",
+                backgroundPosition:"center"
               }}
             >
-              <h1>{`teste ${element}`}</h1>
+              <h1>{`${element.name}`}</h1>
             </Container>
           );
         })}
@@ -45,7 +60,7 @@ function Categories() {
       <IconButton
         className="scroll-button"
         onClick={() => {
-          if (index < list.length) {
+          if (index < category.length) {
             setIndex(index + 1);
           }
         }}

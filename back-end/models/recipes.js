@@ -15,7 +15,8 @@ const recipe = new Schema({
     ingredients_list: Array,
     description: Array,
     reviews: Array,
-    review_count:Number
+    review_count:Number,
+    category_id:String
   });
 
 module.exports = recipe;

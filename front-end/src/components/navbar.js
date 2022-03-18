@@ -42,13 +42,13 @@ function Navbar() {
           >
             <List sx={{ width: "100%" }}>
               <NavLink to="/" className={"NavLink"}>
-                <ListItem>Home</ListItem>
+                <ListItem className="drawer-item">Home</ListItem>
               </NavLink>
               <NavLink to="/add_recipe" className={"NavLink"}>
-                <ListItem>Add Recipe</ListItem>
+                <ListItem className="drawer-item">Add Recipe</ListItem>
               </NavLink>
               <NavLink to="/" className={"NavLink"}>
-                <ListItem>Manage</ListItem>
+                <ListItem className="drawer-item">Manage</ListItem>
               </NavLink>
             </List>
           </Drawer>

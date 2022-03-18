@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
+
+.iframe_recipe {
+  margin-top: 3.6rem;
+}
+
+.about{
+    display: grid;
+    grid-template-columns: 1% 20% 14% 25% 15% 15%;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.about2{
+    display: grid;
+    grid-template-columns:32% 12%;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+.header2,.header,.recipe_submited_by {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.header2{
+    margin-top: 0;
+}
+
+.recipe_name {
+  font-weight: 400;
+  font-size: 22px;
+  opacity: 0.8;
+  border-bottom: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-bottom-style: solid;
+  width: 100%;
+  margin: 0;
+}
+
+.infos {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.icon {
+  opacity: 0.2;
+  margin-right: 0.1rem;
+}
+
+.star-icon{
+    color:#ffdb00;
+}
+
+.list-item-recipe {
+  text-align: start;
+  margin-top: 0;
+}
+
+.ordered-list-item-recipe {
+    text-align: start;
+    margin-top: 2rem;
+  }
+
+.unordered-list-recipe {
+  margin-top: 1rem;
+}
+
+

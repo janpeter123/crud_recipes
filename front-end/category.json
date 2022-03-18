@@ -1,30 +1,30 @@
 [
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fmain-course.jpg?alt=media",
         "name": "Main Courses"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fstarters.jpg?alt=media",
         "name": "Starters"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fside-dish.jpg?alt=media",
         "name": "Side Dishes"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fdessert.jpg?alt=media",
         "name": "Dessert"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fvegetarian.jpg?alt=media",
         "name": "Vegetarian"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fcakes.jpg?alt=media",
         "name": "Cakes"
     },
     {
-        "main_photo": "",
+        "main_photo": "https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/categories%2Fothers.jpg?alt=media",
         "name": "Others"
     }
 ]
