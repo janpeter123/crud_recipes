@@ -82,7 +82,9 @@ function AddRecipe() {
             options={countries}
             sx={{ width: 300, marginTop: "1rem" }}
             size="small"
-            renderInput={(params) => <TextField {...params} label="Recipe country" />}
+            renderInput={(params) => (
+              <TextField {...params} label="Recipe country" />
+            )}
           />
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -112,6 +114,18 @@ function AddRecipe() {
             </Select>
           </div>
 
+          <Select
+            id="food-category"
+            value={"6234b6d31eaa1c44e782f1ca"}
+            // onChange={handleChange}
+            inputProps={{ "aria-label": "Without label" }}
+            sx={{ marginTop: "2rem"}}
+            fullWidth
+            size="small"
+          >
+            <MenuItem value={"6234b6d31eaa1c44e782f1ca"}>Main Course</MenuItem>
+            <MenuItem value={"6234b6d31eaa1c44e782f1cb"}>Starter</MenuItem>
+          </Select>
           <TextField
             id="video-link"
             label="Video Link"
@@ -176,7 +190,7 @@ function AddRecipe() {
               label="Step 1"
               variant="outlined"
               size="small"
-              sx={{ marginTop: "1rem"}}
+              sx={{ marginTop: "1rem" }}
               fullWidth
             />
           </div>
