@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import { Container, Box } from "@mui/material";
+import { Container } from "@mui/material";
 import "../styles/pages/recipe.css";
 import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";

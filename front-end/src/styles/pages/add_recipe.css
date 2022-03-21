@@ -1,0 +1,20 @@
+/* Esconde o input */
+input[type='file'] {
+    display: none
+  }
+  
+  /* Aparência que terá o seletor de arquivo */
+  .upload-photo {
+    border-radius: 5px;
+    color: #000000;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 0.5rem 3rem;
+    background:linear-gradient(294.3deg, rgba(77, 254, 15, 0.83) 0%, rgba(254, 246, 58, 0.7968) 83.16%);
+  }
+  
+  .ingredients-section{
+      text-align: start;
+      margin-bottom: 1px;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
