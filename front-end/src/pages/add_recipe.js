@@ -1,5 +1,5 @@
 // import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { Box } from "@mui/system";
 import svg from "../styles/svgs/chef.svg";
@@ -10,26 +10,40 @@ import {
   Select,
   MenuItem,
   Autocomplete,
+  Button,
+  FormGroup,
 } from "@mui/material";
 
 function AddRecipe() {
-  //   useEffect(() => {
-  //     async function get_recipe() {
-  //       try {
-  //         const res = await fetch(`/get_recipe/?id=${id}`, {
-  //           method: "GET",
-  //           mode: "no-cors",
-  //         });
+  const [descriptionCount, setDescriptionCount] = useState(1);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [description, setDescription] = useState("");
+  const [recipeName, setRecipeName] = useState("");
+  const [recipeCountry, setRecipeCountry] = useState("");
+  const [prepareTime, setPrepareTime] = useState("");
+  const [prepareTimeUnit, setPrepareTimeUnit] = useState("Minutes");
+  const [cookTime, setCookTime] = useState("");
+  const [category, setCategory] = useState("6234b6d31eaa1c44e782f1ca");
+  const [videoLink, setVideoLink] = useState("");
+  const [categories, setCategories] = useState([]);
 
-  //         const parsedData = await res.json();
-  //         setRecipe(parsedData.body);
-  //         console.log(recipe);
-  //       } catch (e) {
-  //         console.log(e);
-  //       }
-  //     }
-  //     get_recipe();
-  //   }, [recipe,id]);
+  useEffect(() => {
+    async function get_recipe() {
+      try {
+        const res = await fetch(`/get_categories`, {
+          method: "GET",
+          mode: "no-cors",
+        });
+
+        const parsedData = await res.json();
+        setCategories(parsedData.body);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    get_recipe();
+  }, []);
   const countries = [
     { label: "Brazil" },
     { label: "Germany" },
@@ -42,7 +56,7 @@ function AddRecipe() {
   ];
 
   return (
-    <div className="App">
+    <section className="App">
       <Navbar />
       <Box sx={{ marginTop: "3.6rem", marginBottom: "10rem" }}>
         <img
@@ -58,6 +72,7 @@ function AddRecipe() {
             variant="outlined"
             size="small"
             required
+            onChange={(event) => setName(event.target.value)}
           />
           <TextField
             id="surname"
@@ -65,6 +80,7 @@ function AddRecipe() {
             variant="outlined"
             size="small"
             sx={{ marginTop: "1rem" }}
+            onChange={(event) => setSurname(event.target.value)}
           />
 
           <TextField
@@ -74,6 +90,7 @@ function AddRecipe() {
             size="small"
             required
             sx={{ marginTop: "1rem" }}
+            onChange={(event) => setRecipeName(event.target.value)}
           />
 
           <Autocomplete
@@ -85,9 +102,10 @@ function AddRecipe() {
             renderInput={(params) => (
               <TextField {...params} label="Recipe country" />
             )}
+            onChange={(event) => setRecipeCountry(event.target.value)}
           />
 
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <section style={{ display: "flex", justifyContent: "space-between" }}>
             <TextField
               id="prepare-time"
               label="Prepare time"
@@ -97,34 +115,41 @@ function AddRecipe() {
               sx={{ marginTop: "1rem", width: "9rem" }}
               type="number"
               inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+              onChange={(event) => setPrepareTime(event.target.value)}
             />
 
             <Select
               id="prepare-time-unit"
-              value={"Minutes"}
-              // onChange={handleChange}
+              value={prepareTimeUnit}
               inputProps={{ "aria-label": "Without label" }}
               sx={{ marginTop: "1rem", width: "9rem" }}
               size="small"
+              onChange={(event) => setPrepareTimeUnit(event.target.value)}
             >
               <MenuItem value={"Seconds"}>Seconds</MenuItem>
               <MenuItem value={"Minutes"}>Minutes</MenuItem>
               <MenuItem value={"Hours"}>Hours</MenuItem>
               <MenuItem value={"Days"}>Days</MenuItem>
             </Select>
-          </div>
+          </section>
 
           <Select
             id="food-category"
-            value={"6234b6d31eaa1c44e782f1ca"}
+            value={category}
             // onChange={handleChange}
             inputProps={{ "aria-label": "Without label" }}
-            sx={{ marginTop: "2rem"}}
+            sx={{ marginTop: "2rem" }}
             fullWidth
             size="small"
+            onChange={(event) => setCategory(event.target.value)}
           >
-            <MenuItem value={"6234b6d31eaa1c44e782f1ca"}>Main Course</MenuItem>
-            <MenuItem value={"6234b6d31eaa1c44e782f1cb"}>Starter</MenuItem>
+            {
+              categories.map((category,i) => {
+                return (
+                  <MenuItem value={category._id} keu={i}>{category.name}</MenuItem>
+                );
+              })
+            }
           </Select>
           <TextField
             id="video-link"
@@ -141,12 +166,12 @@ function AddRecipe() {
             className="inputfile"
             style={{ marginTop: "1rem" }}
           />
-          <label for="upload-photo" className="upload-photo">
+          <label htmlFor="upload-photo" className="upload-photo">
             upload recipe photo
           </label>
 
           <p className="ingredients-section">Ingredients</p>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <section style={{ display: "flex", justifyContent: "space-between" }}>
             <TextField
               id="ingredient-name"
               label="Ingredient name"
@@ -181,22 +206,55 @@ function AddRecipe() {
               <MenuItem value={"dentes"}>dentes</MenuItem>
               <MenuItem value={"unidades"}>unidades</MenuItem>
             </Select>
-          </div>
+          </section>
 
           <p className="ingredients-section">Steps</p>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <TextField
-              id="ingredient-name"
-              label="Step 1"
-              variant="outlined"
-              size="small"
-              sx={{ marginTop: "1rem" }}
-              fullWidth
-            />
-          </div>
+          <section style={{ display: "flex", flexDirection: "column" }}>
+            <FormGroup>
+              {Array.from(Array(descriptionCount), (e, index) => {
+                return (
+                  <TextField
+                    id={`ingredient-name-${index + 1}`}
+                    label={`Step ${index + 1}`}
+                    variant="outlined"
+                    size="small"
+                    sx={{ marginTop: "1rem" }}
+                    key={index}
+                    fullWidth
+                  />
+                );
+              })}
+            </FormGroup>
+          </section>
+          <section style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={(event) => {
+                setDescriptionCount(descriptionCount + 1);
+              }}
+              style={{
+                fontSize: "1rem",
+                fontWeight: "800",
+                color: "rgba(59, 194, 10,0.8)",
+              }}
+            >
+              +
+            </Button>
+            <Button
+              onClick={(event) => {
+                setDescriptionCount(descriptionCount - 1);
+              }}
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: "1000",
+                color: "rgba(230, 0, 0,0.8)",
+              }}
+            >
+              -
+            </Button>
+          </section>
         </FormControl>
       </Box>
-    </div>
+    </section>
   );
 }
 
