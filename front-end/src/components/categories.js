@@ -22,7 +22,7 @@ function Categories() {
       setCategory(parsedResponse.body);
     };
     get_categories();
-  }, [category]);
+  }, []);
 
   return (
     <section className="teste">

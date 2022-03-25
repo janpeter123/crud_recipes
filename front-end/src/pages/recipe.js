@@ -114,9 +114,9 @@ function Recipe() {
             <h4>Ingredientes:</h4>
           </Container>
           <ul className="unordered-list-recipe">
-            {ingredients.map((ingredient) => {
+            {ingredients.map((ingredient,index) => {
               return (
-                <li className="list-item-recipe">{`${ingredient.quantity} ${ingredient.measurement_unit} de ${ingredient.name}`}</li>
+                <li key={index} className="list-item-recipe">{`${ingredient.quantity} ${ingredient.measurement_unit} de ${ingredient.name}`}</li>
               );
             })}
           </ul>
@@ -126,8 +126,8 @@ function Recipe() {
             <h4> Modo de preparo:</h4>
           </Container>
           <ol className="unordered-list-recipe">
-            {description.map((text) => {
-              return <li className="ordered-list-item-recipe">{text}</li>;
+            {description.map((text,index) => {
+              return <li key={index} className="ordered-list-item-recipe">{text}</li>;
             })}
           </ol>
         </section>

@@ -1,0 +1,13 @@
+[
+    { "value": "xicaras", "description": "xicaras" },
+    { "value": "colheres de sopa", "description": "colheres de sopa" },
+    { "value": "colheres de cha", "description": "colheres de chá" },
+    { "value": "colheres de cafe", "description": "colheres de café" },
+    { "value": "gramas", "description": "gramas" },
+    { "value": "quilos", "description": "quilos" },
+    { "value": "pitada", "description": "pitada" },
+    { "value": "dentes", "description": "dentes" },
+    { "value": "unidades", "description": "unidades" },
+    { "value": "ml", "description": "ml" },
+    { "value": "litros", "description": "litros" }
+]

@@ -13,6 +13,9 @@ import {
 
 function AddRecipe() {
   const [name, setName] = useState("");
+  const [ingredients_measurement_units, setIngredientsMeasurementUnits] =
+    useState([]);
+  const [countries, setCountries] = useState([]);
   const [surname, setSurname] = useState("");
   const [description, setDescription] = useState([{ text: "" }]);
   const [ingredients, setIngredients] = useState([
@@ -27,7 +30,7 @@ function AddRecipe() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    async function get_recipe() {
+    async function get_categories() {
       try {
         const res = await fetch(`/get_categories`, {
           method: "GET",
@@ -41,32 +44,38 @@ function AddRecipe() {
       }
     }
 
-    get_recipe();
-  }, []);
-  const countries = [
-    { label: "Brazil" },
-    { label: "Germany" },
-    { label: "England" },
-    { label: "France" },
-    { label: "Italy" },
-    { label: "Japan" },
-    { label: "China" },
-    { label: "unknown" },
-  ];
+    async function get_measurement_units() {
+      try {
+        const res = await fetch(`/get_measurement_units`, {
+          method: "GET",
+          mode: "no-cors",
+        });
 
-  const ingredients_measurement_units = [
-    { value: "xicaras", description: "xicaras" },
-    { value: "colheres de sopa", description: "colheres de sopa" },
-    { value: "colheres de cha", description: "colheres de chá" },
-    { value: "colheres de cafe", description: "colheres de café" },
-    { value: "gramas", description: "gramas" },
-    { value: "quilos", description: "quilos" },
-    { value: "pitada", description: "pitada" },
-    { value: "dentes", description: "dentes" },
-    { value: "unidades", description: "unidades" },
-    { value: "ml", description: "ml" },
-    { value: "litros", description: "litros" },
-  ];
+        const parsedData = await res.json();
+        setIngredientsMeasurementUnits(parsedData.body);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    async function get_countires() {
+      try {
+        const res = await fetch(`/get_countries`, {
+          method: "GET",
+          mode: "no-cors",
+        });
+
+        const parsedData = await res.json();
+        setCountries(parsedData.body);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    get_categories();
+    get_countires();
+    get_measurement_units();
+  }, []);
 
   const handleDescription = (index, event) => {
     let data = [...description];
@@ -80,7 +89,7 @@ function AddRecipe() {
     setIngredients(data);
   };
 
-  const removeIngredients= (index) => {
+  const removeIngredients = (index) => {
     let data = [...ingredients];
     data.splice(index, 1);
     setIngredients(data);
@@ -98,7 +107,6 @@ function AddRecipe() {
       <main
         style={{
           marginTop: "3.6rem",
-          marginBottom: "10rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -183,7 +191,6 @@ function AddRecipe() {
           <Select
             id="food-category"
             value={category}
-            // onChange={handleChange}
             inputProps={{ "aria-label": "Without label" }}
             sx={{ marginTop: "2rem" }}
             fullWidth
@@ -235,7 +242,6 @@ function AddRecipe() {
                   name="name"
                   sx={{ marginTop: "1rem", width: "6rem" }}
                   onChange={(event) => handleIngredient(index, event)}
-
                 />
 
                 <TextField
@@ -247,7 +253,6 @@ function AddRecipe() {
                   sx={{ marginTop: "1rem", width: "6rem" }}
                   name="quantity"
                   onChange={(event) => handleIngredient(index, event)}
-                  
                 />
                 <Select
                   id="ingredient-measurement-unit"
@@ -273,7 +278,10 @@ function AddRecipe() {
           <section style={{ display: "flex", justifyContent: "center" }}>
             <Button
               onClick={(event) => {
-                setIngredients([...ingredients,{ name: "", measurement_unit: "", quantity: "" }]);
+                setIngredients([
+                  ...ingredients,
+                  { name: "", measurement_unit: "", quantity: "" },
+                ]);
               }}
               style={{
                 fontSize: "1rem",
@@ -294,18 +302,6 @@ function AddRecipe() {
               }}
             >
               -
-            </Button>
-            <Button
-              onClick={(event) => {
-                console.log(ingredients)
-              }}
-              style={{
-                fontSize: "1.4rem",
-                fontWeight: "1000",
-                color: "rgba(230, 0, 0,0.8)",
-              }}
-            >
-              TESTE
             </Button>
           </section>
 
@@ -356,6 +352,15 @@ function AddRecipe() {
             </Button>
           </section>
         </form>
+        <Button
+          className="submit"
+          onClick={(event) => {
+            console.log(ingredients);
+          }}
+          sx={{ fontWeight: "400", color: "#000", width: "80%", mb: "2rem" }}
+        >
+          Submit
+        </Button>
       </main>
     </section>
   );

@@ -4,7 +4,7 @@ input[type='file'] {
   }
   
   /* Aparência que terá o seletor de arquivo */
-  .upload-photo {
+  .submit,.upload-photo {
     border-radius: 5px;
     color: #000000;
     cursor: pointer;

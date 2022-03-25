@@ -76,6 +76,39 @@ try {
         }
       });
 
+
+
+      app.get("/get_measurement_units", async (req, res) => {
+        try {
+          const measurement_units = mongoose.model("measurement_units", category_schema);
+          res.setHeader("Content-Type", "application/json");
+          measurement_units.find(
+            {},
+            function (err, docs) {
+              res.status(200).send({ body: docs });
+            }
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      });
+
+
+      app.get("/get_countries", async (req, res) => {
+        try {
+          const countries = mongoose.model("countries", category_schema);
+          res.setHeader("Content-Type", "application/json");
+          countries.find(
+            {},
+            function (err, docs) {
+              res.status(200).send({ body: docs });
+            }
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      });
+
       console.log("Listening on port 5001");
       app.listen(5001);
     }
