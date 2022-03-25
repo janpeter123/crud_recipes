@@ -1,29 +1,27 @@
 // import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import { Box } from "@mui/system";
 import svg from "../styles/svgs/chef.svg";
 import "../styles/pages/add_recipe.css";
 import {
-  FormControl,
   TextField,
   Select,
   MenuItem,
   Autocomplete,
   Button,
-  FormGroup,
 } from "@mui/material";
 
 function AddRecipe() {
-  const [descriptionCount, setDescriptionCount] = useState(1);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState([{ text: "" }]);
+  const [ingredients, setIngredients] = useState([
+    { name: "", measurement_unit: "", quantity: "" },
+  ]);
   const [recipeName, setRecipeName] = useState("");
   const [recipeCountry, setRecipeCountry] = useState("");
   const [prepareTime, setPrepareTime] = useState("");
   const [prepareTimeUnit, setPrepareTimeUnit] = useState("Minutes");
-  const [cookTime, setCookTime] = useState("");
   const [category, setCategory] = useState("6234b6d31eaa1c44e782f1ca");
   const [videoLink, setVideoLink] = useState("");
   const [categories, setCategories] = useState([]);
@@ -42,6 +40,7 @@ function AddRecipe() {
         console.log(e);
       }
     }
+
     get_recipe();
   }, []);
   const countries = [
@@ -55,17 +54,65 @@ function AddRecipe() {
     { label: "unknown" },
   ];
 
+  const ingredients_measurement_units = [
+    { value: "xicaras", description: "xicaras" },
+    { value: "colheres de sopa", description: "colheres de sopa" },
+    { value: "colheres de cha", description: "colheres de chá" },
+    { value: "colheres de cafe", description: "colheres de café" },
+    { value: "gramas", description: "gramas" },
+    { value: "quilos", description: "quilos" },
+    { value: "pitada", description: "pitada" },
+    { value: "dentes", description: "dentes" },
+    { value: "unidades", description: "unidades" },
+    { value: "ml", description: "ml" },
+    { value: "litros", description: "litros" },
+  ];
+
+  const handleDescription = (index, event) => {
+    let data = [...description];
+    data[index][event.target.name] = event.target.value;
+    setDescription(data);
+  };
+
+  const handleIngredient = (index, event) => {
+    let data = [...ingredients];
+    data[index][event.target.name] = event.target.value;
+    setIngredients(data);
+  };
+
+  const removeIngredients= (index) => {
+    let data = [...ingredients];
+    data.splice(index, 1);
+    setIngredients(data);
+  };
+
+  const removeFields = (index) => {
+    let data = [...description];
+    data.splice(index, 1);
+    setDescription(data);
+  };
+
   return (
     <section className="App">
       <Navbar />
-      <Box sx={{ marginTop: "3.6rem", marginBottom: "10rem" }}>
+      <main
+        style={{
+          marginTop: "3.6rem",
+          marginBottom: "10rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <img
           src={svg}
           width={"200rem"}
           alt="drawing of a gril making a sandwich"
         />
         <h3 style={{ fontWeight: "400" }}>Let's start creating!</h3>
-        <FormControl>
+        <form
+          style={{ display: "flex", flexDirection: "column", width: "80%" }}
+        >
           <TextField
             id="name"
             label="Your Name"
@@ -143,13 +190,13 @@ function AddRecipe() {
             size="small"
             onChange={(event) => setCategory(event.target.value)}
           >
-            {
-              categories.map((category,i) => {
-                return (
-                  <MenuItem value={category._id} keu={i}>{category.name}</MenuItem>
-                );
-              })
-            }
+            {categories.map((category, i) => {
+              return (
+                <MenuItem value={category._id} key={i}>
+                  {category.name}
+                </MenuItem>
+              );
+            })}
           </Select>
           <TextField
             id="video-link"
@@ -157,6 +204,7 @@ function AddRecipe() {
             variant="outlined"
             size="small"
             sx={{ marginTop: "1rem" }}
+            onChange={(event) => setVideoLink(event.target.value)}
           />
 
           <input
@@ -169,67 +217,63 @@ function AddRecipe() {
           <label htmlFor="upload-photo" className="upload-photo">
             upload recipe photo
           </label>
-
+          {/* -------------- Teste ----------------- */}
+          {/* -------------- Teste ----------------- */}
+          {/* -------------- Teste ----------------- */}
           <p className="ingredients-section">Ingredients</p>
-          <section style={{ display: "flex", justifyContent: "space-between" }}>
-            <TextField
-              id="ingredient-name"
-              label="Ingredient name"
-              variant="outlined"
-              size="small"
-              sx={{ marginTop: "1rem", width: "6rem" }}
-            />
+          {ingredients.map((element, index) => {
+            return (
+              <section
+                style={{ display: "flex", justifyContent: "space-between" }}
+                key={index}
+              >
+                <TextField
+                  id="ingredient-name"
+                  label="Ingredient name"
+                  variant="outlined"
+                  size="small"
+                  name="name"
+                  sx={{ marginTop: "1rem", width: "6rem" }}
+                  onChange={(event) => handleIngredient(index, event)}
 
-            <TextField
-              id="ingredient-name"
-              label="qtd"
-              variant="outlined"
-              size="small"
-              type="number"
-              sx={{ marginTop: "1rem", width: "6rem" }}
-            />
-            <Select
-              id="ingredient-quantity"
-              value={"xicaras"}
-              // onChange={handleChange}
-              inputProps={{ "aria-label": "Without label" }}
-              sx={{ marginTop: "1rem", width: "6rem" }}
-              size="small"
-            >
-              <MenuItem value={"xicaras"}>xicaras</MenuItem>
-              <MenuItem value={"colheres de sopa"}>colheres de sopa</MenuItem>
-              <MenuItem value={"colheres de cha"}>colheres de chá</MenuItem>
-              <MenuItem value={"colheres de cafe"}>colheres de café</MenuItem>
-              <MenuItem value={"gramas"}>gramas</MenuItem>
-              <MenuItem value={"quilos"}>quilos</MenuItem>
-              <MenuItem value={"pitada"}>pitada</MenuItem>
-              <MenuItem value={"dentes"}>dentes</MenuItem>
-              <MenuItem value={"unidades"}>unidades</MenuItem>
-            </Select>
-          </section>
+                />
 
-          <p className="ingredients-section">Steps</p>
-          <section style={{ display: "flex", flexDirection: "column" }}>
-            <FormGroup>
-              {Array.from(Array(descriptionCount), (e, index) => {
-                return (
-                  <TextField
-                    id={`ingredient-name-${index + 1}`}
-                    label={`Step ${index + 1}`}
-                    variant="outlined"
-                    size="small"
-                    sx={{ marginTop: "1rem" }}
-                    key={index}
-                    fullWidth
-                  />
-                );
-              })}
-            </FormGroup>
-          </section>
+                <TextField
+                  id="ingredient-name"
+                  label="qtd"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  sx={{ marginTop: "1rem", width: "6rem" }}
+                  name="quantity"
+                  onChange={(event) => handleIngredient(index, event)}
+                  
+                />
+                <Select
+                  id="ingredient-measurement-unit"
+                  value={ingredients[index].measurement_unit}
+                  inputProps={{ "aria-label": "Without label" }}
+                  sx={{ marginTop: "1rem", width: "6rem" }}
+                  size="small"
+                  name="measurement_unit"
+                  onChange={(event) => handleIngredient(index, event)}
+                >
+                  {ingredients_measurement_units.map((element, i) => {
+                    return (
+                      <MenuItem key={i} value={element.value}>
+                        {element.description}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </section>
+            );
+          })}
+
           <section style={{ display: "flex", justifyContent: "center" }}>
             <Button
               onClick={(event) => {
-                setDescriptionCount(descriptionCount + 1);
+                setIngredients([...ingredients,{ name: "", measurement_unit: "", quantity: "" }]);
               }}
               style={{
                 fontSize: "1rem",
@@ -241,7 +285,66 @@ function AddRecipe() {
             </Button>
             <Button
               onClick={(event) => {
-                setDescriptionCount(descriptionCount - 1);
+                removeIngredients(ingredients.length - 1);
+              }}
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: "1000",
+                color: "rgba(230, 0, 0,0.8)",
+              }}
+            >
+              -
+            </Button>
+            <Button
+              onClick={(event) => {
+                console.log(ingredients)
+              }}
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: "1000",
+                color: "rgba(230, 0, 0,0.8)",
+              }}
+            >
+              TESTE
+            </Button>
+          </section>
+
+          <p className="ingredients-section">Steps</p>
+          <section style={{ display: "flex", flexDirection: "column" }}>
+            {description.map((element, index) => {
+              return (
+                <TextField
+                  id={`ingredient-name-${index + 1}`}
+                  label={`Step ${index + 1}`}
+                  variant="outlined"
+                  size="small"
+                  name={"text"}
+                  sx={{ marginTop: "1rem" }}
+                  key={index}
+                  onChange={(e) => {
+                    handleDescription(index, e);
+                  }}
+                  fullWidth
+                />
+              );
+            })}
+          </section>
+          <section style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={(event) => {
+                setDescription([...description, { text: "" }]);
+              }}
+              style={{
+                fontSize: "1rem",
+                fontWeight: "800",
+                color: "rgba(59, 194, 10,0.8)",
+              }}
+            >
+              +
+            </Button>
+            <Button
+              onClick={(event) => {
+                removeFields(description.length - 1);
               }}
               style={{
                 fontSize: "1.4rem",
@@ -252,8 +355,8 @@ function AddRecipe() {
               -
             </Button>
           </section>
-        </FormControl>
-      </Box>
+        </form>
+      </main>
     </section>
   );
 }
