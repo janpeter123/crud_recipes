@@ -1,5 +1,6 @@
 // import { useParams } from "react-router-dom";
 import { useEffect, useState, forwardRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import Snackbar from "@mui/material/Snackbar";
@@ -18,6 +19,7 @@ import {
 
 function AddRecipe() {
   const [name, setName] = useState("");
+  const [isSubmited, setIsSubmited] = useState(false);
   const [ingredients_measurement_units, setIngredientsMeasurementUnits] =
     useState([]);
   const [countries, setCountries] = useState([]);
@@ -35,6 +37,7 @@ function AddRecipe() {
   const [categories, setCategories] = useState([]);
   const [fileName, setFileName] = useState(null);
   const [open, setOpen] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function get_categories() {
@@ -108,6 +111,14 @@ function AddRecipe() {
     setDescription(data);
   };
 
+  function videoLinkHelper(){
+    if(videoLink.includes("www.youtube.com/watch?v")&&isSubmited){
+      return null
+    }else if(!videoLink.includes("www.youtube.com/watch?v")&&isSubmited){
+      return "The awaited link format is https://www.youtube.com/watch?v=<video_id>"}
+  }
+
+
   const changeHandler = async (event) => {
     setFileName(event.target.files[0].name);
     const firebase = initializeApp(firebaseConfig);
@@ -130,6 +141,7 @@ function AddRecipe() {
   };
 
   const handleSubmit = async (event) => {
+    setIsSubmited(true);
     try {
       const body = {
         author: `${name} ${surname}`,
@@ -144,8 +156,6 @@ function AddRecipe() {
         category: category,
       };
 
-      //TODO: FIX DESCRIPTION TYPE
-
       const res = await fetch("/create_recipe", {
         method: "post",
         body: JSON.stringify(body),
@@ -154,7 +164,10 @@ function AddRecipe() {
       const data = await res.json();
       console.log(res.status);
       if (res.status === 201) {
+        //TODO: Change this console log to an alert
         console.log("success");
+        navigate("/");
+        
       }
     } catch (e) {
       console.log(e);
@@ -186,8 +199,8 @@ function AddRecipe() {
             label="Your Name"
             variant="outlined"
             size="small"
-            required
             onChange={(event) => setName(event.target.value)}
+            error={name.length === 0 && isSubmited}
           />
           <TextField
             id="surname"
@@ -196,6 +209,7 @@ function AddRecipe() {
             size="small"
             sx={{ marginTop: "1rem" }}
             onChange={(event) => setSurname(event.target.value)}
+            error={surname.length === 0 && isSubmited}
           />
 
           <TextField
@@ -203,7 +217,7 @@ function AddRecipe() {
             label="Recipe Name"
             variant="outlined"
             size="small"
-            required
+            error={recipeName.length === 0 && isSubmited}
             sx={{ marginTop: "1rem" }}
             onChange={(event) => setRecipeName(event.target.value)}
           />
@@ -215,12 +229,11 @@ function AddRecipe() {
             sx={{ width: 300, marginTop: "1rem" }}
             size="small"
             renderInput={(params) => (
-              <TextField {...params} label="Recipe country"/>
+              <TextField {...params} label="Recipe country" />
             )}
-
-            onChange={(event,value) => {
+            error={recipeCountry.length === 0 && isSubmited}
+            onChange={(event, value) => {
               setRecipeCountry(value.label);
-              
             }}
           />
 
@@ -230,11 +243,11 @@ function AddRecipe() {
               label="Prepare time"
               variant="outlined"
               size="small"
-              required
               sx={{ marginTop: "1rem", width: "9rem" }}
               type="number"
               inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
               onChange={(event) => setPrepareTime(event.target.value)}
+              error={!prepareTime && isSubmited}
             />
 
             <Select
@@ -244,6 +257,7 @@ function AddRecipe() {
               sx={{ marginTop: "1rem", width: "9rem" }}
               size="small"
               onChange={(event) => setPrepareTimeUnit(event.target.value)}
+              error={prepareTimeUnit.length === 0 && isSubmited}
             >
               <MenuItem value={"Seconds"}>Seconds</MenuItem>
               <MenuItem value={"Minutes"}>Minutes</MenuItem>
@@ -276,6 +290,8 @@ function AddRecipe() {
             size="small"
             sx={{ marginTop: "1rem" }}
             onChange={(event) => setVideoLink(event.target.value)}
+            error={videoLink.includes("https://www.youtube.com/watch?v=") === false && isSubmited}
+            helperText={videoLinkHelper()}
           />
 
           <input
@@ -288,6 +304,7 @@ function AddRecipe() {
               changeHandler(event);
               console.log(fileName);
             }}
+            error={!fileName && isSubmited}
           />
 
           <label htmlFor="upload-photo" className="upload-photo">
@@ -297,13 +314,10 @@ function AddRecipe() {
             sx={{ marginBottom: "1rem", justifyContent: "center" }}
             open={open}
             onClose={handleClose}
-            autoHideDuration={6000}
+            autoHideDuration={3000}
           >
             <Alert severity="success">Image uploaded!</Alert>
           </Snackbar>
-          {/* -------------- Teste ----------------- */}
-          {/* -------------- Teste ----------------- */}
-          {/* -------------- Teste ----------------- */}
           <p className="ingredients-section">Ingredients</p>
           {ingredients.map((element, index) => {
             return (
