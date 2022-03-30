@@ -114,7 +114,10 @@ try {
             year: "numeric",
           });
 
-          console.log(req.body);
+          if(req.body.video_link.includes("watch?v=")){ 
+            req.body.video_link = req.body.video_link.replace("watch?v=","embed/")
+          }
+
           const Recipes = mongoose.model("recipe", recipe_schema);
           res.setHeader("Content-Type", "application/json");
           const recipe = new Recipes({
