@@ -3,3 +3,4 @@ back-end/.env
 front-end/src/credentials/credentials.js
 front-end/src/credentials/credentials.js
 front-end/src/credentials/credentials_do_not_share.js
+front-end/src/pages/storage_config.js

@@ -58,7 +58,7 @@ function MediaCard() {
                     <div>
                       <Rating
                         name="simple-controlled"
-                        value={4.5}
+                        value={recipe.reviews}
                         size="small"
                       />
                     </div>

@@ -27,10 +27,7 @@ function Recipe() {
         setRecipe(parsedData.body);
         setIngredients(parsedData.body.ingredients_list);
         setDescription(parsedData.body.description);
-        let reviews_local = parsedData.body.reviews;
-        let sum = reviews_local.reduce((a, b) => a + b);
-        reviews_local = (sum / reviews_local.length).toFixed(1);
-        setReviews(reviews_local);
+        setReviews( parsedData.body.reviews);
       } catch (e) {
         console.log(e);
       }
@@ -126,8 +123,8 @@ function Recipe() {
             <h4> Modo de preparo:</h4>
           </Container>
           <ol className="unordered-list-recipe">
-            {description.map((text,index) => {
-              return <li key={index} className="ordered-list-item-recipe">{text}</li>;
+            {description.map((element,index) => {
+              return <li key={index} className="ordered-list-item-recipe">{element.text}</li>;
             })}
           </ol>
         </section>

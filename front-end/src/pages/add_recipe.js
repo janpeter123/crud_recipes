@@ -1,5 +1,10 @@
 // import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import firebaseConfig from "../pages/storage_config";
 import Navbar from "../components/navbar";
 import svg from "../styles/svgs/chef.svg";
 import "../styles/pages/add_recipe.css";
@@ -28,6 +33,8 @@ function AddRecipe() {
   const [category, setCategory] = useState("6234b6d31eaa1c44e782f1ca");
   const [videoLink, setVideoLink] = useState("");
   const [categories, setCategories] = useState([]);
+  const [fileName, setFileName] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function get_categories() {
@@ -101,6 +108,59 @@ function AddRecipe() {
     setDescription(data);
   };
 
+  const changeHandler = async (event) => {
+    setFileName(event.target.files[0].name);
+    const firebase = initializeApp(firebaseConfig);
+    const storage = getStorage(firebase);
+    const storageRef = ref(storage, event.target.files[0].name);
+    uploadBytes(storageRef, event.target.files[0]).then((snapshot) => {
+      setOpen(true);
+    });
+  };
+
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleSubmit = async (event) => {
+    try {
+      const body = {
+        author: `${name} ${surname}`,
+        recipe_name: recipeName,
+        country: recipeCountry,
+        prepare_time: prepareTime,
+        prepare_time_unit: prepareTimeUnit,
+        video_link: videoLink,
+        main_photo: `https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/${fileName}?alt=media`,
+        ingredients_list: ingredients,
+        description: description,
+        category: category,
+      };
+
+      //TODO: FIX DESCRIPTION TYPE
+
+      const res = await fetch("/create_recipe", {
+        method: "post",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      console.log(res.status);
+      if (res.status === 201) {
+        console.log("success");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <section className="App">
       <Navbar />
@@ -155,9 +215,13 @@ function AddRecipe() {
             sx={{ width: 300, marginTop: "1rem" }}
             size="small"
             renderInput={(params) => (
-              <TextField {...params} label="Recipe country" />
+              <TextField {...params} label="Recipe country"/>
             )}
-            onChange={(event) => setRecipeCountry(event.target.value)}
+
+            onChange={(event,value) => {
+              setRecipeCountry(value.label);
+              
+            }}
           />
 
           <section style={{ display: "flex", justifyContent: "space-between" }}>
@@ -220,10 +284,23 @@ function AddRecipe() {
             accept="image/png, image/jpeg"
             className="inputfile"
             style={{ marginTop: "1rem" }}
+            onChange={(event) => {
+              changeHandler(event);
+              console.log(fileName);
+            }}
           />
+
           <label htmlFor="upload-photo" className="upload-photo">
-            upload recipe photo
+            {fileName ? fileName : "Upload photo"}
           </label>
+          <Snackbar
+            sx={{ marginBottom: "1rem", justifyContent: "center" }}
+            open={open}
+            onClose={handleClose}
+            autoHideDuration={6000}
+          >
+            <Alert severity="success">Image uploaded!</Alert>
+          </Snackbar>
           {/* -------------- Teste ----------------- */}
           {/* -------------- Teste ----------------- */}
           {/* -------------- Teste ----------------- */}
@@ -354,9 +431,7 @@ function AddRecipe() {
         </form>
         <Button
           className="submit"
-          onClick={(event) => {
-            console.log(ingredients);
-          }}
+          onClick={handleSubmit}
           sx={{ fontWeight: "400", color: "#000", width: "80%", mb: "2rem" }}
         >
           Submit

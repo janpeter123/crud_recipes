@@ -14,7 +14,7 @@ const recipe = new Schema({
     photo_album: Array,
     ingredients_list: Array,
     description: Array,
-    reviews: Array,
+    reviews: Number,
     review_count:Number,
     category_id:String
   });

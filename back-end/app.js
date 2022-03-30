@@ -22,6 +22,8 @@ try {
     if (err) {
     } else {
       var app = express();
+      app.use(express.json());
+      app.use(express.urlencoded({ extended: true }));
 
       app.get("/get_catalog", async function (req, res) {
         //getting recipes
@@ -76,34 +78,69 @@ try {
         }
       });
 
-
-
       app.get("/get_measurement_units", async (req, res) => {
         try {
-          const measurement_units = mongoose.model("measurement_units", category_schema);
-          res.setHeader("Content-Type", "application/json");
-          measurement_units.find(
-            {},
-            function (err, docs) {
-              res.status(200).send({ body: docs });
-            }
+          const measurement_units = mongoose.model(
+            "measurement_units",
+            category_schema
           );
+          res.setHeader("Content-Type", "application/json");
+          measurement_units.find({}, function (err, docs) {
+            res.status(200).send({ body: docs });
+          });
         } catch (e) {
           console.log(e);
         }
       });
 
-
       app.get("/get_countries", async (req, res) => {
         try {
           const countries = mongoose.model("countries", category_schema);
           res.setHeader("Content-Type", "application/json");
-          countries.find(
-            {},
-            function (err, docs) {
-              res.status(200).send({ body: docs });
+          countries.find({}, function (err, docs) {
+            res.status(200).send({ body: docs });
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      });
+
+      app.post("/create_recipe", async (req, res) => {
+        try {
+          let date = new Date();
+          var created_at = date.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          });
+
+          console.log(req.body);
+          const Recipes = mongoose.model("recipe", recipe_schema);
+          res.setHeader("Content-Type", "application/json");
+          const recipe = new Recipes({
+            _id: new mongoose.Types.ObjectId(),
+            author: req.body.author,
+            recipe_name: req.body.recipe_name,
+            prepare_time: req.body.prepare_time,
+            prepare_time_unit: req.body.prepare_time_unit,
+            main_photo: req.body.main_photo,
+            video_link: req.body.video_link,
+            ingredients_list: req.body.ingredients_list,
+            description: req.body.description,
+            country: req.body.country,
+            category_id: req.body.category_id,
+            review_count: 0,
+            reviews: 0,
+            date: created_at,
+          });
+
+          recipe.save(function (err) {
+            if (err) {
+              console.log(err);
             }
-          );
+          });
+
+          res.status(201).send(req.body);
         } catch (e) {
           console.log(e);
         }
