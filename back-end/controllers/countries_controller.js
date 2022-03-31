@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const category_schema = require("../models/categories");
 
+/**
+ * @api {get} /get_countries
+ * @acces Public
+ * @description Gets all available countries to help the user on the recipe page.
+ * @param {object} req 
+ * @param {object} res 
+ */
 
 exports.countries_controller = async (req, res) => {
     try {

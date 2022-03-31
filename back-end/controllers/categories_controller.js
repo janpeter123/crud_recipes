@@ -4,6 +4,15 @@ const category_schema = require("../models/categories");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
+/**
+ * 
+ * @api {get} /get_categories
+ * @access Public
+ * @description Gets All Categories names and photos to display on the home page
+ * @param {object} req 
+ * @param {object} res 
+ */
+
 exports.categories_controller = async (req, res) => {
     try {
       const Categories = mongoose.model("categories", category_schema);

@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const recipe_schema = require("../models/recipes");
 
+/**
+ * @api {post} /create_recipe
+ * @access Public
+ * @description Creates a new recipe
+ * @param {object} req 
+ * @param {object} res 
+ */
 exports.create_recipe_controller = async (req, res) => {
     try {
       let date = new Date();

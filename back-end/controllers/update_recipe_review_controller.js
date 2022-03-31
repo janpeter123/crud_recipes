@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const recipe_schema = require("../models/recipes");
 
+/**
+ * @api {patch} /update_recipe
+ * @access Public
+ * @description Updates a recipe's review count and reviews
+ * @param {object} req 
+ * @param {object} res 
+ */
+
 exports.update_recipe_review_controller = async (req, res) => {
     const Recipes = mongoose.model("recipe", recipe_schema);
     res.setHeader("Content-Type", "application/json");
