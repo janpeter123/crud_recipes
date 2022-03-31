@@ -1,9 +1,73 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
 
+
+.star-icon{
+  color:#ffdb00;
+}
+/*Desktop*/
+@media only screen and (min-width: 910px){
+  .iframe_recipe {
+    margin-top: 5rem !important;
+    height: 40rem !important;
+    width: 80%;
+  }
+
+  
+
+  .about{
+    display: grid;
+    grid-template-columns: 20% 30% 40% 10%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0;
+    justify-items: center;
+  }
+  .infos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .prepare_time{
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  .infos, .header, .secondary_info{
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .header{
+    opacity: 0.5;
+  }
+
+  .icon{
+    height: 1.4rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+
+  .secondary_info{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .unordered-list-recipe{
+    padding-left: 8rem;
+    text-align: start;
+  }
+}
+
+/*Mobile*/
+@media only screen and (max-width: 909px){
 .iframe_recipe {
   margin-top: 3.6rem;
 }
-
 .about{
     display: grid;
     grid-template-columns: 1% 20% 14% 25% 15% 15%;
@@ -53,9 +117,6 @@
   margin-right: 0.1rem;
 }
 
-.star-icon{
-    color:#ffdb00;
-}
 
 .list-item-recipe {
   text-align: start;
@@ -70,5 +131,4 @@
 .unordered-list-recipe {
   margin-top: 1rem;
 }
-
-
+}

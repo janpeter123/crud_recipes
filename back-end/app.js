@@ -114,8 +114,11 @@ try {
             year: "numeric",
           });
 
-          if(req.body.video_link.includes("watch?v=")){ 
-            req.body.video_link = req.body.video_link.replace("watch?v=","embed/")
+          if (req.body.video_link.includes("watch?v=")) {
+            req.body.video_link = req.body.video_link.replace(
+              "watch?v=",
+              "embed/"
+            );
           }
 
           const Recipes = mongoose.model("recipe", recipe_schema);
@@ -149,6 +152,25 @@ try {
         }
       });
 
+      app.patch("/update_recipe", async (req, res) => {
+        const Recipes = mongoose.model("recipe", recipe_schema);
+        res.setHeader("Content-Type", "application/json");
+
+        try {
+          Recipes.findByIdAndUpdate(
+            req.body.id,
+            {
+             reviews: req.body.new_review,
+              review_count: req.body.new_review_count,
+            },
+            function (err, docs) {
+              res.sendStatus(200);
+            }
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      });
       console.log("Listening on port 5001");
       app.listen(5001);
     }
