@@ -119,7 +119,7 @@ function Navbar() {
               sx={searchBarStyle}
             />
           </FormControl>
-          <NavLink to="/" className="NavLink">
+          <NavLink to="/add_recipe" className={"NavLink"}>
             Add Recipe
           </NavLink>
           <NavLink to="/" className="NavLink">

@@ -1,6 +1,7 @@
 import "../styles/components/categories.css";
 import React from "react";
 import Container from "@mui/material/Container";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { IconButton } from "@mui/material/";
@@ -10,6 +11,8 @@ function Categories() {
   //deve ter 6 categorias.
   const [category, setCategory] = React.useState([]);
   const [index, setIndex] = useState(1);
+  
+  
 
   useEffect(() => {
     const get_categories = async () => {
@@ -25,11 +28,11 @@ function Categories() {
   }, []);
 
   return (
-    <section className="teste">
+    <section className="section-with-buttons">
       <IconButton
         className="scroll-button"
         onClick={() => {
-          if (index > 1) {
+          if (index >= 1) {
             setIndex(index - 1);
           }
         }}

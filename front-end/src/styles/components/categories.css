@@ -1,22 +1,72 @@
+*{
+  scroll-behavior: smooth !important;
+}
+
+@media only screen and (max-width: 900px){
+  .categories-section {
+    overflow: scroll;
+    display: flex;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+  }  
+  
+  .categories-card {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    border-radius: 0.5rem;
+    min-width: 10rem !important;
+    color:white;
+  }
+  
+  .section-with-buttons{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .scroll-button{
+      height: 100% !important;
+      border-radius: 0 !important;
+  }
+  
+  a{
+      color:black;
+      opacity: 0.1;
+  }
+
+}
+
+
+@media only screen and (min-width: 910px){
+
 .categories-section {
   overflow: scroll;
   display: flex;
-  width: 80%;
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   padding-bottom: 1rem;
+  
+}
+.categories-section::-webkit-scrollbar {
+  display: none;
 }
 
 .categories-card {
   margin-left: 0.5rem !important;
   margin-right: 0.5rem !important;
   border-radius: 0.5rem;
-  min-width: 10rem !important;
+  min-width: 15rem !important;
+  min-height: 8rem;
   color:white;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
-.teste{
+.section-with-buttons{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,4 +80,6 @@
 a{
     color:black;
     opacity: 0.1;
+}
+
 }

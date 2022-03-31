@@ -1,6 +1,6 @@
 // import { useParams } from "react-router-dom";
 import { useEffect, useState, forwardRef } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import Snackbar from "@mui/material/Snackbar";
@@ -20,6 +20,7 @@ import {
 function AddRecipe() {
   const [name, setName] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const [ingredients_measurement_units, setIngredientsMeasurementUnits] =
     useState([]);
   const [countries, setCountries] = useState([]);
@@ -37,6 +38,7 @@ function AddRecipe() {
   const [categories, setCategories] = useState([]);
   const [fileName, setFileName] = useState(null);
   const [open, setOpen] = useState(false);
+  const [photoFeedback, setPhotoFeedback] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -111,13 +113,32 @@ function AddRecipe() {
     setDescription(data);
   };
 
-  function videoLinkHelper(){
-    if(videoLink.includes("www.youtube.com/watch?v")&&isSubmited){
-      return null
-    }else if(!videoLink.includes("www.youtube.com/watch?v")&&isSubmited){
-      return "The awaited link format is https://www.youtube.com/watch?v=<video_id>"}
+  function videoLinkHelper() {
+    if (videoLink.includes("www.youtube.com/watch?v") && isSubmited) {
+      return null;
+    } else if (!videoLink.includes("www.youtube.com/watch?v") && isSubmited) {
+      return "The awaited link format is https://www.youtube.com/watch?v=<video_id>";
+    }
   }
 
+  function formValidation() {
+    if (
+      !name ||
+      !surname ||
+      !recipeName ||
+      !prepareTime ||
+      !recipeCountry ||
+      !category ||
+      !videoLink ||
+      !fileName
+    ){
+      setIsValid(false);
+      return false;
+    }else {
+      setIsValid(true);
+      return true;
+    }
+  }
 
   const changeHandler = async (event) => {
     setFileName(event.target.files[0].name);
@@ -125,7 +146,7 @@ function AddRecipe() {
     const storage = getStorage(firebase);
     const storageRef = ref(storage, event.target.files[0].name);
     uploadBytes(storageRef, event.target.files[0]).then((snapshot) => {
-      setOpen(true);
+      setPhotoFeedback(true);
     });
   };
 
@@ -134,56 +155,48 @@ function AddRecipe() {
   });
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
     setOpen(false);
   };
 
   const handleSubmit = async (event) => {
-    setIsSubmited(true);
-    try {
-      const body = {
-        author: `${name} ${surname}`,
-        recipe_name: recipeName,
-        country: recipeCountry,
-        prepare_time: prepareTime,
-        prepare_time_unit: prepareTimeUnit,
-        video_link: videoLink,
-        main_photo: `https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/${fileName}?alt=media`,
-        ingredients_list: ingredients,
-        description: description,
-        category: category,
-      };
-
-      const res = await fetch("/create_recipe", {
-        method: "post",
-        body: JSON.stringify(body),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-      console.log(res.status);
-      if (res.status === 201) {
-        //TODO: Change this console log to an alert
-        console.log("success");
-        navigate("/");
-        
+    setOpen(true);
+    if(formValidation()){
+      try {
+        const body = {
+          author: `${name} ${surname}`,
+          recipe_name: recipeName,
+          country: recipeCountry,
+          prepare_time: prepareTime,
+          prepare_time_unit: prepareTimeUnit,
+          video_link: videoLink,
+          main_photo: `https://firebasestorage.googleapis.com/v0/b/crud-recipes.appspot.com/o/${fileName}?alt=media`,
+          ingredients_list: ingredients,
+          description: description,
+          category: category,
+        };
+  
+        const res = await fetch("/create_recipe", {
+          method: "post",
+          body: JSON.stringify(body),
+          headers: { "Content-Type": "application/json" },
+        });
+        setIsSubmited(true);
+        if (res.status === 201) {
+          navigate("/");
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+
     }
+    
   };
 
   return (
-    <section className="App">
+    <div className="App">
       <Navbar />
       <main
-        style={{
-          marginTop: "3.6rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
+        className="Add-Recipe"
       >
         <img
           src={svg}
@@ -290,7 +303,10 @@ function AddRecipe() {
             size="small"
             sx={{ marginTop: "1rem" }}
             onChange={(event) => setVideoLink(event.target.value)}
-            error={videoLink.includes("https://www.youtube.com/watch?v=") === false && isSubmited}
+            error={
+              videoLink.includes("https://www.youtube.com/watch?v=") ===
+                false && isSubmited
+            }
             helperText={videoLinkHelper()}
           />
 
@@ -310,14 +326,16 @@ function AddRecipe() {
           <label htmlFor="upload-photo" className="upload-photo">
             {fileName ? fileName : "Upload photo"}
           </label>
+          
           <Snackbar
             sx={{ marginBottom: "1rem", justifyContent: "center" }}
-            open={open}
-            onClose={handleClose}
+            open={photoFeedback}
+            onClose={()=>setPhotoFeedback(false)}  
             autoHideDuration={3000}
           >
             <Alert severity="success">Image uploaded!</Alert>
           </Snackbar>
+
           <p className="ingredients-section">Ingredients</p>
           {ingredients.map((element, index) => {
             return (
@@ -450,8 +468,24 @@ function AddRecipe() {
         >
           Submit
         </Button>
+        <Snackbar
+          sx={{ marginBottom: "1rem", justifyContent: "center" }}
+          open={open && isSubmited}
+          onClose={handleClose}
+          autoHideDuration={3000}
+        >
+          <Alert severity="success">Recipe submited!</Alert>
+        </Snackbar>
+        <Snackbar
+          sx={{ marginBottom: "1rem", justifyContent: "center" }}
+          open={open && !isValid}
+          onClose={handleClose}
+          autoHideDuration={3000}
+        >
+          <Alert severity="error">Please fill the red fields</Alert>
+        </Snackbar>
       </main>
-    </section>
+    </div>
   );
 }
 
