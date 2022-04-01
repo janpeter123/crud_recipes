@@ -58,3 +58,42 @@ note: this is the basic database schema, the final one can suffer alterations an
    - A recipe can have an origin country and an origin country can have zero or many recipes.
 
 
+## Mobile Web Application
+### Home / Landing Page
+
+<div style="display:flex;">
+<img src="./readme_images/front_mobile/home.png" height=600/>
+<img src="./readme_images/front_mobile/drawer.png" height=600/>
+</div>
+
+## Recipe Page
+This is the page you go if you click on a recipe card.
+<div style="display:flex;">
+<img src="./readme_images/front_mobile/recipe1.png" height=400/>
+<img src="./readme_images/front_mobile/recipe2.png" height=400/>
+<img src="./readme_images/front_mobile/recipe3.png" height=400/>
+ </div>
+
+## Add recipe Page (Form)
+
+<div style="display:flex;">
+<img src="./readme_images/front_mobile/form1.png" height=400/>
+<img src="./readme_images/front_mobile/form2.png" height=400/>
+ </div>
+
+## Desktop Web Application
+### Home / Landing Page
+
+<img src="./readme_images/front_desktop/home.png"/>
+<img src="./readme_images/front_desktop/home2.png"/>
+
+## Recipe Page
+
+<img src="./readme_images/front_desktop/recipe1.png"/>
+<img src="./readme_images/front_desktop/recipe2.png"/>
+<img src="./readme_images/front_desktop/recipe3.png"/>
+
+## Add recipe Page (Form)
+
+<img src="./readme_images/front_desktop/form1.png"/>
+<img src="./readme_images/front_desktop/form2.png"/>
