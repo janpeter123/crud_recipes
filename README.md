@@ -1,5 +1,14 @@
 # C.R.U.D Recipes
-This is an entire recipe web application planned and designed by myself.
+
+## About the development
+
+This is a recipe web application developed with the `mobile first` concept. So the mobile application was developed first and optimized to small screens, the smallest screen that it was developed was an `Iphone SE` that is not one of the smallest phones on the market today.
+For the Desktop version it was developed and tested only on a `13" monitor`. I tried to develop based on relative measures, this way it shouldn't be a big issue if you try to execute on a different screen size.
+
+## What an user can do
+
+A user can create and rate any recipe without the need of logging in but only the admin user can delete or update recipes. Such as names or descriptions.
+
 
 # Application Details
   This application consists of two independent parts the [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end) and the [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end).
