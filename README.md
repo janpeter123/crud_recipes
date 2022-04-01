@@ -28,7 +28,7 @@ Back-End
 ----
   - [MongoDB hosted on AWS](https://www.mongodb.com/)
   - [Express.js](https://expressjs.com/)
-  - [Firebase Storage](https://firebase.google.com/docs/storage/web/start)
+  - [Google Firebase Storage](https://firebase.google.com/docs/storage/web/start)
 
 ## MongoDB schemas
 <img src="./readme_images/Recipe_schema.png" width=200/>
