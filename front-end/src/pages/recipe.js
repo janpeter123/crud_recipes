@@ -1,24 +1,33 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import Navbar from "../components/navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Container } from "@mui/material";
 import "../styles/pages/recipe.css";
 import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
-import PublicIcon from '@mui/icons-material/Public';
+import PublicIcon from "@mui/icons-material/Public";
 import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import {
+  container_style,
+  page_style,
+  title_with_icon_style,
+} from "../styles/pages/recipe_sx";
 
 function Recipe() {
   const [recipe, setRecipe] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [description, setDescription] = useState([]);
   const [reviews, setReviews] = useState(0);
+  const [feedback,setFeedback] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     async function get_recipe() {
       try {
         const res = await fetch(`/get_recipe/?id=${id}`, {
@@ -52,7 +61,7 @@ function Recipe() {
       });
 
       if (res.status === 200) {
-        console.log("Atualizado!");
+        return true;
       }
     } catch (e) {
       console.log(e);
@@ -60,34 +69,9 @@ function Recipe() {
   }
 
   const mobile = useMediaQuery("(max-width:900px)");
-
-  const container_style = {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "center",
-    alignItems: "center",
-    margin: 0,
-    borderBottom: "1px",
-    borderBottomStyle: "solid",
-    borderBottomColor: "rgba(0,0,0,0.2)",
-  };
-
-  const page_style = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "80%",
-    padding: 0,
-  };
-
-  const title_with_icon_style = {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "center",
-    alignItems: "center",
-    textAlign: "start",
-    whiteSpace: "pre-line",
-  };
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   if (!mobile) {
     return (
@@ -103,17 +87,17 @@ function Recipe() {
         ></iframe>
         <Container sx={page_style}>
           <section className="about">
-            <h5 className="header">Rating</h5>
+            <h5 className="header">Nota</h5>
 
             <h5 className="header">Reviews</h5>
-            <div style={{display:"flex", alignItems: "flex-end"}}>
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
               <AccessTimeRoundedIcon className="icon" />
-              <h5 className="header">Prepare Time</h5>
+              <h5 className="header">Tempo de preparo</h5>
             </div>
 
-            <div style={{display:"flex", alignItems: "flex-end"}}>
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
               <PublicIcon className="icon" />
-              <h5 className="header">Country</h5>
+              <h5 className="header">País</h5>
             </div>
 
             <Rating
@@ -123,7 +107,10 @@ function Recipe() {
                 newValue = Math.round((newValue + reviews) / 2);
                 let review_count = recipe.review_count + 1;
                 setReviews(newValue);
-                updateReview(newValue, review_count);
+                const updated = updateReview(newValue, review_count);
+                if(updated){
+                  setFeedback(true);
+                };
               }}
             />
 
@@ -136,17 +123,20 @@ function Recipe() {
           </section>
 
           <div className="about2">
-            <h5 className="header2">Data de envio:</h5>
-            <h5 className="header2">{recipe.date}</h5>
+            <h5 className="header2">
+              {" "}
+              <span className="submited_on">Data de envio:</span> {recipe.date}
+            </h5>
+            <h5 className="recipe_submited_by">
+              <span className="submited_on">Receita enviada por: </span>
+              {recipe.author}
+            </h5>
           </div>
 
-          <h5 className="recipe_submited_by">
-            Receita enviada por: {recipe.author}
-          </h5>
           <h3 className="recipe_name">{recipe.recipe_name}</h3>
           <section className="infos">
             <Container sx={container_style}>
-              <RestaurantRoundedIcon className="icon" />
+              <RestaurantRoundedIcon className="icon2" />
               <h4>Ingredientes:</h4>
             </Container>
             <ul className="unordered-list-recipe">
@@ -161,7 +151,7 @@ function Recipe() {
             </ul>
 
             <Container sx={container_style}>
-              <BakeryDiningIcon className="icon" />
+              <BakeryDiningIcon className="icon2" />
               <h4> Modo de preparo:</h4>
             </Container>
             <ol className="unordered-list-recipe">
@@ -175,6 +165,14 @@ function Recipe() {
             </ol>
           </section>
         </Container>
+        <Snackbar
+          sx={{ marginBottom: "1rem", justifyContent: "center" }}
+          open={feedback}
+          onClose={() => setFeedback(false)}
+          autoHideDuration={3000}
+        >
+          <Alert severity="success">Your review was submited!</Alert>
+        </Snackbar>
       </div>
     );
   } else {

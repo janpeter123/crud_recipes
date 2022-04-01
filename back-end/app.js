@@ -1,12 +1,20 @@
 //# Express Dependencies
 var express = require("express");
-const {catalog_controller} = require("./controllers/catalog_controller");
-const { recipe_controller} = require("./controllers/recipe_controller");
-const { categories_controller } = require("./controllers/categories_controller");
-const { measurement_controller } = require("./controllers/measurement_units_controller");
+const { catalog_controller } = require("./controllers/catalog_controller");
+const { recipe_controller } = require("./controllers/recipe_controller");
+const {
+  categories_controller,
+} = require("./controllers/categories_controller");
+const {
+  measurement_controller,
+} = require("./controllers/measurement_units_controller");
 const { countries_controller } = require("./controllers/countries_controller");
-const { create_recipe_controller } = require("./controllers/create_recipe_controller");
-const { update_recipe_review_controller } = require("./controllers/update_recipe_review_controller");
+const {
+  create_recipe_controller,
+} = require("./controllers/create_recipe_controller");
+const {
+  update_recipe_review_controller,
+} = require("./controllers/update_recipe_review_controller");
 
 //# Mongoose
 const mongoose = require("mongoose");
@@ -20,7 +28,6 @@ const Schema = mongoose.Schema;
 const uri = `mongodb+srv://${credentials.MONGO_DB_ROLE}:${credentials.MONGO_DB_PASSWORD}@cluster0.83pjp.mongodb.net/crud?retryWrites=true&w=majority`;
 
 //Connecting to the DB
-
 try {
   mongoose.connect(uri, (err, docs) => {
     if (err) {
@@ -30,19 +37,15 @@ try {
       app.use(express.urlencoded({ extended: true }));
 
       app.get("/get_catalog", catalog_controller);
-
       app.get("/get_recipe", recipe_controller);
-
       app.get("/get_categories", categories_controller);
-
       app.get("/get_measurement_units", measurement_controller);
-
       app.get("/get_countries", countries_controller);
 
       app.post("/create_recipe", create_recipe_controller);
 
       app.patch("/update_recipe", update_recipe_review_controller);
-      
+
       console.log("Listening on port 5001");
       app.listen(5001);
     }

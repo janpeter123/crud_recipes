@@ -8,7 +8,7 @@
 @media only screen and (min-width: 910px){
   .iframe_recipe {
     margin-top: 5rem !important;
-    height: 40rem !important;
+    height: 38rem !important;
     width: 80%;
   }
 
@@ -16,7 +16,7 @@
 
   .about{
     display: grid;
-    grid-template-columns: 20% 30% 40% 10%;
+    grid-template-columns: 20% 30% 40% 5%;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -45,10 +45,14 @@
     opacity: 0.5;
   }
 
-  .icon{
+  .icon,.icon2{
     height: 1.4rem;
     margin-bottom: 0.5rem;
     opacity: 0.5;
+  }
+
+  .icon2{
+    margin-bottom: 0;
   }
 
 
@@ -60,6 +64,26 @@
   .unordered-list-recipe{
     padding-left: 8rem;
     text-align: start;
+  }
+
+  .recipe_name{
+    font-size: 2.3rem;
+    font-weight: 500;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    
+  }
+
+  .submited_on{
+    color:rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+  }
+
+  .about2{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
   }
 }
 
