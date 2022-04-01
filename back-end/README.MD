@@ -1,7 +1,10 @@
 # Back-End
 
 # Configuration
-All the credentials you will need are configured on the `.env` file
+1. All the credentials you will need are configured on the `.env` file
+2. To install all dependencies run `npm i`
+3. If you want to run on development mode run `npm run dev`.
+
 
 # Available Routes
 
