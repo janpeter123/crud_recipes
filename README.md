@@ -6,13 +6,14 @@
 
  1. [About](#about)
  2. [What a user can do](#what-a-user-can-do)
- 3. [Application Details](#application-details)
+ 3. [Application Architecture](#application-architecture)
+ 4. [Application Details](#application-details)
     - [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end)
     - [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end)
- 4. [Technologies Used](#technologies-used)
- 5. [Database Schemas](#mongodb-schemas)
- 6. ["Business Rules"](#business-rules)
- 7. [Web Application Review](#mobile-web-application)
+ 5. [Technologies Used](#technologies-used)
+ 6. [Database Schemas](#mongodb-schemas)
+ 7. ["Business Rules"](#business-rules)
+ 8. [Web Application Review](#mobile-web-application)
     - [Mobile](#mobile-web-application)
     - [Desktop](#desktop-web-application)
 
@@ -26,12 +27,15 @@ For the Desktop version it was developed and tested only on a `13" monitor`. I t
 
 A user can create and rate any recipe without the need of logging in but only the admin user can delete or update recipes. Such as names or descriptions.
 
+ # Application architecture
+ <img src="./readme_images/architecture.png" width=600/>
 
 # Application Details
   This application consists of two independent parts the [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end) and the [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end).
   
   - See more about the Front-End [here](https://github.com/janpeter123/crud_recipes/tree/main/front-end)
   - See more about the Back-end [here](https://github.com/janpeter123/crud_recipes/tree/main/back-end)
+ 
  
  ## Technologies used:
  Front-End
