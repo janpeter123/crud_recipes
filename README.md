@@ -1,11 +1,19 @@
 # C.R.U.D Recipes
 
-## Contents
- 1.[About](about)
- 2.[What a user can do](what-a-user-can-do)
- 3.[Application Details](application-details)
+## Content
+ `Note: If you are not a developer, or you just want to see the final result I recommend you to go to section 7.`
+
+ 1. [About](#about)
+ 2. [What a user can do](#what-a-user-can-do)
+ 3. [Application Details](#application-details)
     - [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end)
     - [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end)
+ 4. [Technologies Used](#technologies-used)
+ 5. [Database Schemas](#mongodb-schemas)
+ 6. ["Business Rules"](#business-rules)
+ 7. [Web Application Review](#mobile-web-application)
+    - [Mobile](#mobile-web-application)
+    - [Desktop](#desktop-web-application)
 
 
 ## About
