@@ -1,4 +1,5 @@
 const passport = require("passport");
+const { createHash } = require("crypto");
 
 /**
  * @api {post} /login
