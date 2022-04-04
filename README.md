@@ -1,7 +1,8 @@
 # C.R.U.D Recipes
 
+ ⭐️ Note: If you are not a developer, or you just want to see the final result I recommend you to go to [section 7](#mobile-web-application).
+
 ## Content
- `Note: If you are not a developer, or you just want to see the final result I recommend you to go to section 7.`
 
  1. [About](#about)
  2. [What a user can do](#what-a-user-can-do)
