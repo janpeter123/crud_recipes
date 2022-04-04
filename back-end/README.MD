@@ -215,4 +215,23 @@ Expected response:
 In case you logged in correctly:
 `HTTP Code 200 - OK` and `Successfully Authenticated`
 
+## [PATCH] Routes
 
+##### `/update_recipe` - Updates the review of a recipe
+
+Expected request body:
+
+Here we're going to update the review of a recipe and the review count of it.
+On the front end, we will take the average bewteen the old review and the new review and update id.
+The review_count is updated one by one on the Front-End.
+
+```
+{
+    "id": "6226535bfae9d040fca5734f",
+    "new_review": 5,
+    "new_review_count": 3
+}
+```
+Expected response:
+
+`HTTP Code 200 - OK`
