@@ -20,7 +20,6 @@ Expected response:
 
 If everything works correctly you will need to acces the `response.body` to display the data on the home page.
 
-To display the image correctly you need to have a firebase token to add it to the end of the image link
 ```
 {
     "body": [
@@ -30,7 +29,7 @@ To display the image correctly you need to have a firebase token to add it to th
             "recipe_name": "Normal White Rice",
             "prepare_time": 30,
             "prepare_time_unit": "Minutes",
-            "main_photo": "https://firebasestorage...photo.jpeg?alt=media&token=",
+            "main_photo": "https://firebasestorage...photo.jpeg?alt=media",
             "reviews": ["5","4",...]
         },
         .
