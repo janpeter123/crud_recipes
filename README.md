@@ -29,6 +29,7 @@ Back-End
   - [MongoDB hosted on AWS](https://www.mongodb.com/)
   - [Express.js](https://expressjs.com/)
   - [Google Firebase Storage](https://firebase.google.com/docs/storage/web/start)
+  - [Passport.js](https://www.passportjs.org/)
 
 ## MongoDB schemas
 <img src="./readme_images/Recipe_schema.png" width=200/>
