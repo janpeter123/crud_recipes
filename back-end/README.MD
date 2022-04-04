@@ -1,5 +1,19 @@
 # Back-End
 
+# Content
+ 1. [About](#about)
+ 2. [Configuration](#configuration)
+ 3. [Available Routes](available-routes)
+    - [GET Routes](#get-routes)
+    - [POST Routes](#post-routes)
+    - [PATCH Routes](#patch-routes)
+
+# About
+This back-end focuses on manipulating the database. You will see get,post and patch routes to manipulate the C.R.U.D Recipes information to the front-end.
+All routes use json for delivering data and for retrieving, in other words a post need to be made in JSON and the back-end will deliver the info in JSON.
+
+
+
 # Configuration
 1. All the credentials you will need are configured on the `.env` file
 2. To install all dependencies run `npm i`
@@ -8,9 +22,9 @@
 
 # Available Routes
 
-## [GET] Routes
+# [GET] Routes
 
-##### `/get_catalog` - Get recipes data to display on the front-end cards
+## `/get_catalog` - Get recipes data to display on the front-end cards
 
 Example:
 
@@ -39,7 +53,7 @@ If everything works correctly you will need to acces the `response.body` to disp
 }
 ```
 
-##### `/get_recipe` - Gets a specific recipe based on ID
+## `/get_recipe` - Gets a specific recipe based on ID
 
 Example:
 
@@ -82,7 +96,7 @@ Expected response:
 }
 ```
 
-##### `/get_categories` - Gets all food categories available
+## `/get_categories` - Gets all food categories available
 
 Example:
 
@@ -106,7 +120,7 @@ Expected response:
         }...
 ```
 
-##### `/get_measurement_units` - Gets all food measurement units available
+## `/get_measurement_units` - Gets all food measurement units available
 
 Example:
 
@@ -134,7 +148,7 @@ Expected response:
         ...
 ```
 
-##### `/get_countries` - Gets all countries available
+## `/get_countries` - Gets all countries available
 
 Example:
 
@@ -155,9 +169,9 @@ Expected response:
         ...
 ```
 
-## [POST] Routes
+# [POST] Routes
 
-##### `/create_recipe` - Creates a new recipe
+## `/create_recipe` - Creates a new recipe
 
 Expected request body:
 
@@ -198,7 +212,7 @@ Expected Response:
 
 `HTTP Code 201 - Created` and your recipe.
 
-##### `/login` - Logs a user into the platform
+## `/login` - Logs a user into the platform
 
 Expected request body:
 
@@ -214,9 +228,9 @@ Expected response:
 In case you logged in correctly:
 `HTTP Code 200 - OK` and `Successfully Authenticated`
 
-## [PATCH] Routes
+# [PATCH] Routes
 
-##### `/update_recipe` - Updates the review of a recipe
+## `/update_recipe` - Updates the review of a recipe
 
 Expected request body:
 
