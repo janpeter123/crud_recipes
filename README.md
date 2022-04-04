@@ -76,6 +76,10 @@ note: this is the basic database schema, the final one can suffer alterations an
 <img src="./readme_images/front_mobile/drawer.png" height=600/>
 </div>
 
+Description:
+
+Home with drawer/menu closed | Home with Drawer/menu open
+
 ## Recipe Page
 This is the page you go if you click on a recipe card.
 <div style="display:flex;">
