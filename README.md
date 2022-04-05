@@ -28,7 +28,7 @@ For the Desktop version it was developed and tested only on a `13" monitor`. I t
 A user can create and rate any recipe without the need of logging in but only the admin user can delete or update recipes. Such as names or descriptions.
 
  # Application architecture
- <img src="./readme_images/architecture.png" width=600/>
+ <img src="./readme_images/architecturev2.png" width=600/>
 
 # Application Details
   This application consists of two independent parts the [Front-End](https://github.com/janpeter123/crud_recipes/tree/main/front-end) and the [Back-End](https://github.com/janpeter123/crud_recipes/tree/main/back-end).
