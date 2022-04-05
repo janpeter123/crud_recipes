@@ -16,7 +16,7 @@
  8. [Web Application Review](#mobile-web-application)
     - [Mobile](#mobile-web-application)
     - [Desktop](#desktop-web-application)
- 9. [Tested Web Browsers](#tested-web-browsers)
+ 9. [Tested Web Browsers](#supported-and-tested-web-browsers)
 
 
 ## About
