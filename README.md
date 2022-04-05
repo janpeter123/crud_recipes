@@ -1,23 +1,5 @@
 # C.R.U.D Recipes
-Front-End
-<div style="display:flex">
- <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
- <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" />
- <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
-</div>
-
-Back-End
-
-<div style="display:flex">
- <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
- <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" />
- <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
- <img src="https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white"/>
- <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white"/>
- <img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
-</div>
  
-
  ⭐️ Note: If you are not a developer, or you just want to see the final result I recommend you to go to [section 7](#mobile-web-application).
 
 ## Content
@@ -60,15 +42,27 @@ A user can create and rate any recipe without the need of logging in but only th
  ## Technologies used:
  Front-End
  -----
-  - [React.js](https://reactjs.org/)
-  - [React Router](https://reactrouter.com/)
+ 
+ <div style="display:flex">
+ <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /></a>
+ <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" />
+ <a href="https://reactrouter.com/"><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/></a>
+ <a href="https://mui.com/"><img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white"/></a>
+</div>
+
   - [Mongoose](https://mongoosejs.com/)
-  - [MUI](https://mui.com/)
 
 Back-End
 ----
-  - [MongoDB hosted on AWS](https://www.mongodb.com/)
-  - [Express.js](https://expressjs.com/)
+<div style="display:flex">
+ <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
+ <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" /></a>
+ <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/></a>
+ <a href="https://firebase.google.com/docs/storage/web/start"><img src="https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white"/></a>
+ <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white"/>
+ <img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
+</div>
+
   - [Google Firebase Storage](https://firebase.google.com/docs/storage/web/start)
   - [Passport.js](https://www.passportjs.org/)
 
