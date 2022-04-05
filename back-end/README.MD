@@ -3,7 +3,8 @@
 # Content
  1. [About](#about)
  2. [Configuration](#configuration)
- 3. [Available Routes](available-routes)
+ 3. [Architecture](#architecture)
+ 4. [Available Routes](available-routes)
     - [GET Routes](#get-routes)
     - [POST Routes](#post-routes)
     - [PATCH Routes](#patch-routes)
@@ -12,6 +13,9 @@
 This back-end focuses on manipulating the database. You will see get,post and patch routes to manipulate the C.R.U.D Recipes information to the front-end.
 All routes use json for delivering data and for retrieving, in other words a post need to be made in JSON and the back-end will deliver the info in JSON.
 
+# Architecture
+
+<img src="../readme_images/back-architecture.png" width=700 />
 
 
 # Configuration
