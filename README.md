@@ -16,6 +16,7 @@
  8. [Web Application Review](#mobile-web-application)
     - [Mobile](#mobile-web-application)
     - [Desktop](#desktop-web-application)
+ 9. [Tested Web Browsers](#tested-web-browsers)
 
 
 ## About
@@ -148,3 +149,11 @@ This is the page you go if you click on a recipe card.
 
 <img src="./readme_images/front_desktop/form1.png"/>
 <img src="./readme_images/front_desktop/form2.png"/>
+
+## Supported and Tested Web Browsers
+Supported:
+
+<img src="https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white"/>
+
+Tested but doesn't support glassmorphism:
+<img src="https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white"/>
