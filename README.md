@@ -27,6 +27,8 @@ For the Desktop version it was developed and tested only on a `13" monitor`. I t
 
 A user can create and rate any recipe without the need of logging in but only the admin user can delete or update recipes. Such as names or descriptions.
 
+*Rating recipes is available only on the desktop version.
+
  # Application architecture
  <img src="./readme_images/architecturev2.png" width=600/>
 
@@ -102,6 +104,7 @@ Description:
 Home with drawer/menu closed | Home with Drawer/menu open
 
 ## Recipe Page
+
 This is the page you go if you click on a recipe card.
 <div style="display:flex;">
 <img src="./readme_images/front_mobile/recipe1.png" height=400/>
@@ -117,6 +120,7 @@ This is the page you go if you click on a recipe card.
  </div>
 
 ## Desktop Web Application
+
 ### Home / Landing Page
 
 <img src="./readme_images/front_desktop/home.png"/>
