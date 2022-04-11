@@ -68,11 +68,11 @@ Back-End
   - [Passport.js](https://www.passportjs.org/)
 
 ## MongoDB schemas
-<img src="./readme_images/Recipe_schema.png" width=200/>
+<img src="./readme_images/schemas.png" width=600/>
 
 ## Schemas description
 
-#### • Recipes
+#### Recipes
   
 Field | Description
 ----|----
@@ -90,6 +90,42 @@ Ingredients_list | Ingredients used on this recipe
 description | Recipe Steps of how to do it
 reviews | User reviews
 review_count | How many people had reviewed a recipe
+
+
+#### Measurement_units
+Field | Description
+----|-------
+ id | Primary Key
+ value | Value of the measurement unit on the back end
+ Description | Value that appears on the front-end on the recipe page
+ 
+ #### Users
+Field | Description
+----|-------
+id  | Primary Key
+name| Username (name + surname)
+password | Password (sha-256)
+country | Origin Contry of the user
+username | username to log into the system
+
+#### Categories
+Field | Description
+----|-------
+id| Primary Key
+main_photo | Photo that appears on the main page
+name | Name of the category
+
+#### Countries
+Field | Description
+----|-------
+id | Primary Key
+label | Country name
+
+#### Ingredients
+Field | Description
+----|-------
+id | Primary Key
+nome | name of the ingredient
 
 
 
