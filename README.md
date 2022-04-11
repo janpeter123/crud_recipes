@@ -85,7 +85,6 @@ prepare_time | Prepare time of the recipe
 prepare_time_unit | Time unit of the prepare time. Can be Hours, Minutes, Days
 video_link | Youtube or another video Link of the recipe
 main_photo | The photo that will be displayed on the main page of the app
-photo_album | Recipe Image gallery, More images of the recipe
 Ingredients_list | Ingredients used on this recipe
 description | Recipe Steps of how to do it
 reviews | User reviews
