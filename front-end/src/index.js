@@ -4,6 +4,7 @@ import "./styles/index.css";
 import App from "./App";
 import Recipe from "./pages/recipe";
 import AddRecipe from "./pages/add_recipe";
+import Login from "./pages/login";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,6 +14,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="/recipe/:id" element={<Recipe />} />
       <Route path="/add_recipe/" element={<AddRecipe />} />
+      <Route path="/login/" element={<Login />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

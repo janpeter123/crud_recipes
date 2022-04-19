@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/janpeter123/crud_recipes#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "redux-react-session": "^2.6.1"
   }
 }

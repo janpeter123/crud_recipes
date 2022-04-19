@@ -50,7 +50,7 @@ function Navbar() {
               <NavLink to="/" className={"NavLink"}>
                 <ListItem className="drawer-item">Manage</ListItem>
               </NavLink>
-              <NavLink to="/" className="LoginButton">
+              <NavLink to="/login/" className="LoginButton">
                 <Button
                   sx={{
                     color: "#000",
@@ -125,7 +125,7 @@ function Navbar() {
           <NavLink to="/" className="NavLink">
             Manage
           </NavLink>
-          <NavLink to="/" className="LoginButton">
+          <NavLink to="/login/" className="LoginButton">
             <Button
               sx={{
                 color: "#000",
